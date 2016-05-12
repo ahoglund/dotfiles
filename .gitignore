@@ -1,0 +1,12 @@
+#ignore all
+*
+
+#exceptions
+!.vim/
+!.gitconfig
+!.gitignore
+!.vimrc
+!.tmux.conf
+!.slate
+!.bash_profile
+!.git-completion.sh
