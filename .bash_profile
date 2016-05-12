@@ -53,3 +53,6 @@ parse_git_branch() {
 }
 
 source ~/.git-completion.sh
+source ~/.git-prompt.sh
+PS1="\[$BLUE\]\u\[$YELLOW\]\[$YELLOW\]\w\[\033[m\]\[$MAGENTA\]\$(__git_ps1)\[$WHITE\]\$ "
+
