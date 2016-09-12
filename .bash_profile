@@ -39,6 +39,9 @@ alias be="bundle exec"
 alias bi="bundle install"
 alias cleanup_merged_branches="git branch --merged master | grep -v master | xargs -n 1 git branch -d"
 alias tmux="TERM=screen-256color-bce tmux"
+alias tmuxconf="vim ~/.tmux.conf"
+alias vimrc="vim ~/.vimrc"
+alias bash_profile="vim ~/.bash_profile"
 
 ## activate bash completion ##
 if [ -f $(brew --prefix)/etc/bash_completion ]; then

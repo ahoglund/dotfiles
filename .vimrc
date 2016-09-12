@@ -1,7 +1,5 @@
 execute pathogen#infect()
-" syntax on
-" filetype plugin indent on
-" colorscheme molokai            "vim color scheme
+" ensure vim-sensible is installed to get some baseline stuff
 
 " close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -12,22 +10,19 @@ autocmd BufWritePre * :%s/\s\+$//e
 nmap <C-n> :NERDTreeToggle<CR>
 vmap <C-n> :NERDTreeToggle<CR>
 
-" set backspace=indent,eol,start "allow backspacing over everything in insert mode
-set cursorline                 "highlight current line
-set history=50                 "keep 50 lines of command line history
-set hlsearch                   "highlight matches when searching
-set incsearch                  "do incremental searching
-set number                     "show line numbers
-set ruler                      "show the cursor position all the time
-set showcmd                    "display incomplete commands
-set wildmenu                   "visual autocomplete for command menu
+set cursorline  "highlight current line
+set history=50  "keep 50 lines of command line history
+set hlsearch    "highlight matches when searching
+set incsearch   "do incremental searching
+set number      "show line numbers
+set showcmd     "display incomplete commands
 set paste
 
 "folding settings
-set foldmethod=indent   "fold based on indent
-set foldnestmax=10      "deepest fold is 10 levels
-set nofoldenable        "dont fold by default
-set foldlevel=1         "this is just what i use
+set foldmethod=indent "fold based on indent
+set foldnestmax=10    "deepest fold is 10 levels
+set nofoldenable      "dont fold by default
+set foldlevel=1       "this is just what i use
 
 " setup tabbing
 set tabstop=2
@@ -37,11 +32,10 @@ set expandtab
 
 " Make it obvious where 80 characters is
 set textwidth=80
-set colorcolumn=+1
-let mapleader=","
+set colorcolumn=+2
 
-imap kj <Esc>:w<CR>
-imap jk <Esc>:w<CR>
+let mapleader=","
+map <space> <leader>
 
 " vim-test
 nmap <silent> <leader>t :TestNearest<CR>
@@ -66,7 +60,10 @@ command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 nmap \ :Ag<SPACE>
 
 nmap T :Tabularize /=<CR>
-
+nmap <silent> <leader>s :!<CR>
+nmap <leader>f /<C-R><C-W><CR>
+nmap <leader>c ZZ<CR>
+nmap <leader>w :w!<CR>
 
 " multiple cursor remap
 let g:multi_cursor_use_default_mapping=0
