@@ -72,6 +72,10 @@ let g:multi_cursor_prev_key='<C-p>'
 let g:multi_cursor_skip_key='<C-x>'
 let g:multi_cursor_quit_key='<Esc>'
 
+" elm
+nnoremap <leader>em :ElmMakeCurrentFile<CR>
+autocmd BufWritePost *.elm ElmMakeCurrentFile
+
 " easier split pane navigation
 nmap <C-J> <C-W><C-J>
 nmap <C-K> <C-W><C-K>
