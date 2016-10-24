@@ -37,7 +37,7 @@ alias glog='git log --pretty=oneline --graph'
 alias rspec="rspec -fd"
 alias be="bundle exec"
 alias bi="bundle install"
-alias cleanup_merged_branches="git branch --merged master | grep -v master | xargs -n 1 git branch -d"
+alias cleanup_old_git_branches="git co master; git pull; git branch --merged master | grep -v master | xargs -n 1 git branch -d"
 alias tmux="TERM=screen-256color-bce tmux"
 alias tmuxconf="vim ~/.tmux.conf"
 alias vimrc="vim ~/.vimrc"
