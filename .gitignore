@@ -2,7 +2,6 @@
 *
 
 #exceptions
-!.gitignore
 !.vimrc
 !.tmux.conf
 !.slate
