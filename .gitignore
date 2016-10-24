@@ -1,4 +1,5 @@
 #ignore all
+.gitconfig
 *
 
 #exceptions
@@ -7,3 +8,5 @@
 !.slate
 !.bash_profile
 !.git-completion.sh
+!.git-prompt.sh
+!.vim-setup.sh
