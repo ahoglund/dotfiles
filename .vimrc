@@ -9,6 +9,7 @@ autocmd BufWritePre * :%s/\s\+$//e
 
 nmap <C-n> :NERDTreeToggle<CR>
 vmap <C-n> :NERDTreeToggle<CR>
+runtime macros/matchit.vim
 
 set cursorline  "highlight current line
 set history=50  "keep 50 lines of command line history
