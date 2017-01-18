@@ -3,7 +3,7 @@
 for i in $(cat .vimbundles); do
   mkdir -p ~/.vim/bundle/;
   cd ~/.vim/bundle/;
-  git clone $i;
+  git clone git@github.com:${i}.git;
 done;
 
 mkdir -p ~/.vim/autoload ~/.vim/bundle;

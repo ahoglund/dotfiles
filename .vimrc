@@ -55,8 +55,9 @@ if executable('ag')
   let g:ctrlp_use_caching = 0
 endif
 
-nmap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+
+nmap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 nmap \ :Ag<SPACE>
 
 nmap T :Tabularize /=<CR>
