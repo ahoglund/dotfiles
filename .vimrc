@@ -65,6 +65,21 @@ nmap <leader>f /<C-R><C-W><CR>
 nmap <leader>c ZZ<CR>
 nmap <leader>w :w!<CR>
 
+" buffer nav
+nmap <Leader>b :ls<CR>
+nmap <Leader>bl :bp<CR>
+nmap <Leader>bn :bn<CR>
+nmap <Leader>1 :1b<CR>
+nmap <Leader>2 :2b<CR>
+nmap <Leader>3 :3b<CR>
+nmap <Leader>4 :4b<CR>
+nmap <Leader>5 :5b<CR>
+nmap <Leader>6 :6b<CR>
+nmap <Leader>7 :7b<CR>
+nmap <Leader>8 :8b<CR>
+nmap <Leader>9 :9b<CR>
+nmap <Leader>0 :10b<CR>
+
 " multiple cursor remap
 let g:multi_cursor_use_default_mapping=0
 let g:multi_cursor_next_key='<C-b>'
