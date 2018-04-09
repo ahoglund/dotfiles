@@ -1,15 +1,7 @@
 execute pathogen#infect()
-" ensure vim-sensible is installed to get some baseline stuff
-
-" close vim if the only window left open is a NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " strip whitespace on save
 autocmd BufWritePre * :%s/\s\+$//e
-
-nmap <C-n> :NERDTreeToggle<CR>
-vmap <C-n> :NERDTreeToggle<CR>
-runtime macros/matchit.vim
 
 set cursorline  "highlight current line
 set history=50  "keep 50 lines of command line history
@@ -35,13 +27,14 @@ set expandtab
 set textwidth=80
 set colorcolumn=+2
 
+" leader key remapped to spacebar
 let mapleader=","
 map <space> <leader>
 
 " vim-test
-nmap <silent> <leader>t :TestNearest<CR>
+" nmap <silent> <leader>t :TestNearest<CR>
 nmap <silent> <leader>T :TestFile<CR>
-nmap <silent> <leader>a :TestSuite<CR>
+" nmap <silent> <leader>a :TestSuite<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>g :TestVisit<CR>
 
@@ -49,6 +42,7 @@ nmap <silent> <leader>g :TestVisit<CR>
 if executable('ag')
   " Use Ag over Grep
   set grepprg=ag\ --nogroup\ --nocolor
+
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag -Q -l --nocolor --hidden -g "" %s'
 
@@ -61,7 +55,11 @@ command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 nmap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 nmap \ :Ag<SPACE>
 
-nmap T :Tabularize /=<CR>
+nmap <Leader>a= :Tabularize /=<CR>
+vmap <Leader>a= :Tabularize /=<CR>
+nmap <Leader>a: :Tabularize /:\zs<CR>
+vmap <Leader>a: :Tabularize /:\zs<CR>
+
 nmap <silent> <leader>s :!<CR>
 nmap <leader>f /<C-R><C-W><CR>
 nmap <leader>c ZZ<CR>
@@ -69,8 +67,6 @@ nmap <leader>w :w!<CR>
 
 " buffer nav
 nmap <Leader>b :ls<CR>
-nmap <Leader>bl :bp<CR>
-nmap <Leader>bn :bn<CR>
 nmap <Leader>1 :1b<CR>
 nmap <Leader>2 :2b<CR>
 nmap <Leader>3 :3b<CR>
@@ -81,13 +77,13 @@ nmap <Leader>7 :7b<CR>
 nmap <Leader>8 :8b<CR>
 nmap <Leader>9 :9b<CR>
 nmap <Leader>0 :10b<CR>
+nmap <space><space> <C-^><CR>
 
-" multiple cursor remap
-let g:multi_cursor_use_default_mapping=0
-let g:multi_cursor_next_key='<C-b>'
-let g:multi_cursor_prev_key='<C-p>'
-let g:multi_cursor_skip_key='<C-x>'
-let g:multi_cursor_quit_key='<Esc>'
+nmap <leader>e :edit<SPACE>
+nmap <leader>v :view<SPACE>
+
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
 
 " elm
 " nnoremap <leader>em :ElmMakeCurrentFile<CR>
