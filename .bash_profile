@@ -47,12 +47,15 @@ alias tmux="TERM=screen-256color-bce tmux"
 alias tmuxconf="vim ~/.tmux.conf"
 alias vimrc="vim ~/.vimrc"
 alias bash_profile="vim ~/.bash_profile"
+alias git_conflicts='git diff --name-only --diff-filter=U'
+alias gcp="git cherry-pick"
 
 ## activate bash completion ##
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   source $(brew --prefix)/etc/bash_completion
 fi
 
+export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
@@ -64,4 +67,3 @@ parse_git_branch() {
 source ~/.git-completion.sh
 source ~/.git-prompt.sh
 PS1="\[$BLUE\]\u\[$YELLOW\]\[$YELLOW\]\w\[\033[m\]\[$MAGENTA\]\$(__git_ps1)\[$WHITE\]\$ "
-

@@ -77,13 +77,31 @@ nmap <Leader>7 :7b<CR>
 nmap <Leader>8 :8b<CR>
 nmap <Leader>9 :9b<CR>
 nmap <Leader>0 :10b<CR>
-nmap <space><space> <C-^><CR>
-
 nmap <leader>e :edit<SPACE>
 nmap <leader>v :view<SPACE>
+nmap <Leader>fh :%s/:\(\w\+\)\s*=>\s*/\1: /g<CR>
+nmap <space><space> <C-^><CR>
 
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
+
+function! DockerComposeStrategy(cmd)
+  execute "!" . ' docker-compose exec test bundle exec spring ' . a:cmd
+endfunction
+
+let g:test#custom_strategies = {'docker-compose': function('DockerComposeStrategy')}
+let g:test#strategy = 'docker-compose'
+
+"function! SpringStrategy(cmd)
+"  echo 'bundle exec spring ' . a:cmd
+"  execute "!" . ' bundle exec spring ' . a:cmd
+"endfunction
+
+"let g:test#custom_strategies = {'spring': function('SpringStrategy')}
+"let g:test#strategy = 'spring'
+
+let test#ruby#bundle_exec = 0
+let test#ruby#use_binstubs = 1
 
 " elm
 " nnoremap <leader>em :ElmMakeCurrentFile<CR>
