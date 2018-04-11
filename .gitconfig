@@ -8,3 +8,6 @@
     br = branch
     pl = pull
     ps = push
+[user]
+	email =
+	name = Andrew Hoglund
