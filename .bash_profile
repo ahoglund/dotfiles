@@ -48,6 +48,7 @@ alias tmuxconf="vim ~/.tmux.conf"
 alias vimrc="vim ~/.vimrc"
 alias bash_profile="vim ~/.bash_profile"
 alias git_conflicts='git diff --name-only --diff-filter=U'
+alias gcp="git cherry-pick"
 
 ## activate bash completion ##
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
