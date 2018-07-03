@@ -2,6 +2,10 @@ execute pathogen#infect()
 
 " strip whitespace on save
 autocmd BufWritePre * :%s/\s\+$//e
+" convert tabs on save
+autocmd BufWritePre * :%s/\t\+/  /e
+" mkdir if file doesn't exist
+autocmd BufWritePre * call s:Mkdir()
 
 set cursorline  "highlight current line
 set history=50  "keep 50 lines of command line history
@@ -32,7 +36,7 @@ let mapleader=","
 map <space> <leader>
 
 " vim-test
-" nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>r :TestNearest<CR>
 nmap <silent> <leader>T :TestFile<CR>
 " nmap <silent> <leader>a :TestSuite<CR>
 nmap <silent> <leader>l :TestLast<CR>
@@ -55,10 +59,12 @@ command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 nmap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 nmap \ :Ag<SPACE>
 
-nmap <Leader>a= :Tabularize /=<CR>
-vmap <Leader>a= :Tabularize /=<CR>
-nmap <Leader>a: :Tabularize /:\zs<CR>
-vmap <Leader>a: :Tabularize /:\zs<CR>
+nmap <Leader>ae :Tabularize /=<CR>
+vmap <Leader>ae :Tabularize /=<CR>
+nmap <Leader>ah :Tabularize /:\zs<CR>
+vmap <Leader>ah :Tabularize /:\zs<CR>
+nmap <Leader>ahr :Tabularize /=><CR>
+vmap <Leader>ahr :Tabularize /=><CR>
 
 nmap <silent> <leader>s :!<CR>
 nmap <leader>f /<C-R><C-W><CR>
@@ -85,20 +91,21 @@ nmap <space><space> <C-^><CR>
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
 
+function s:Mkdir()
+  let dir = expand('%:p:h')
+
+  if !isdirectory(dir)
+    call mkdir(dir, 'p')
+    echo 'Created non-existing directory: '.dir
+  endif
+endfunction
+
 function! DockerComposeStrategy(cmd)
   execute "!" . ' docker-compose exec test bundle exec spring ' . a:cmd
 endfunction
 
 let g:test#custom_strategies = {'docker-compose': function('DockerComposeStrategy')}
 let g:test#strategy = 'docker-compose'
-
-"function! SpringStrategy(cmd)
-"  echo 'bundle exec spring ' . a:cmd
-"  execute "!" . ' bundle exec spring ' . a:cmd
-"endfunction
-
-"let g:test#custom_strategies = {'spring': function('SpringStrategy')}
-"let g:test#strategy = 'spring'
 
 let test#ruby#bundle_exec = 0
 let test#ruby#use_binstubs = 1
