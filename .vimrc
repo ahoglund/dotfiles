@@ -1,4 +1,30 @@
-execute pathogen#infect()
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/bundle')
+Plug 'scrooloose/nerdtree'
+" Plug 'wincent/command-t'
+Plug 'ElmCast/elm-vim'
+Plug 'keith/rspec.vim'
+Plug 'godlygeek/tabular'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-commentary'
+Plug 'elixir-lang/vim-elixir'
+Plug 'vim-ruby/vim-ruby'
+Plug 'janko-m/vim-test'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'kana/vim-textobj-user'
+Plug 'nelstrom/vim-textobj-rubyblock'
+Plug 'neomake/neomake'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-surround'
+call plug#end()
 
 " strip whitespace on save
 autocmd BufWritePre * :%s/\s\+$//e
@@ -7,11 +33,14 @@ autocmd BufWritePre * :%s/\t\+/  /e
 " mkdir if file doesn't exist
 autocmd BufWritePre * call s:Mkdir()
 
+call neomake#configure#automake('w')
+
 set cursorline  "highlight current line
 set history=50  "keep 50 lines of command line history
 set hlsearch    "highlight matches when searching
 set incsearch   "do incremental searching
 set number      "show line numbers
+set numberwidth=5
 set showcmd     "display incomplete commands
 set paste
 
@@ -31,14 +60,19 @@ set expandtab
 set textwidth=80
 set colorcolumn=+2
 
+set list listchars=tab:»·,trail:·,nbsp:·
+
 " leader key remapped to spacebar
 let mapleader=","
 map <space> <leader>
 
+" Fuzzy Finder
+nmap <silent> <leader>r :Files<CR>
+
 " vim-test
-nmap <silent> <leader>r :TestNearest<CR>
+nmap <silent> <leader>t :TestNearest<CR>
 nmap <silent> <leader>T :TestFile<CR>
-" nmap <silent> <leader>a :TestSuite<CR>
+nmap <silent> <leader>a :TestSuite<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>g :TestVisit<CR>
 

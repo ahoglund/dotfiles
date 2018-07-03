@@ -64,6 +64,12 @@ parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
+if type nvim > /dev/null 2>&1; then
+  alias vim='nvim'
+fi
+
 source ~/.git-completion.sh
 source ~/.git-prompt.sh
 PS1="\[$BLUE\]\u\[$YELLOW\]\[$YELLOW\]\w\[\033[m\]\[$MAGENTA\]\$(__git_ps1)\[$WHITE\]\$ "
+
+export PATH="$HOME/.cargo/bin:$PATH"
