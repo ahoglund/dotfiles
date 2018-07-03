@@ -58,6 +58,7 @@ fi
 export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+eval "$(ssh-agent -s)"
 
 # git branch in prompt
 parse_git_branch() {
