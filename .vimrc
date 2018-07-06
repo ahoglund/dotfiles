@@ -24,6 +24,7 @@ Plug 'neomake/neomake'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-surround'
+Plug 'rakr/vim-one'
 call plug#end()
 
 " strip whitespace on save
@@ -34,6 +35,9 @@ autocmd BufWritePre * :%s/\t\+/  /e
 autocmd BufWritePre * call s:Mkdir()
 
 call neomake#configure#automake('w')
+
+set background=dark
+colorscheme one
 
 set cursorline  "highlight current line
 set history=50  "keep 50 lines of command line history
