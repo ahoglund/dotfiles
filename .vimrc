@@ -25,12 +25,13 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-surround'
 Plug 'rakr/vim-one'
+Plug 'kassio/neoterm'
 call plug#end()
 
 " strip whitespace on save
 autocmd BufWritePre * :%s/\s\+$//e
 " convert tabs on save
-autocmd BufWritePre * :%s/\t\+/  /e
+autocmd BufWritePre *.rb :%s/\t\+/  /e
 " mkdir if file doesn't exist
 autocmd BufWritePre * call s:Mkdir()
 
@@ -46,7 +47,7 @@ set incsearch   "do incremental searching
 set number      "show line numbers
 set numberwidth=5
 set showcmd     "display incomplete commands
-set paste
+"set paste
 
 "folding settings
 set foldmethod=indent "fold based on indent
@@ -79,6 +80,13 @@ nmap <silent> <leader>T :TestFile<CR>
 nmap <silent> <leader>a :TestSuite<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>g :TestVisit<CR>
+
+if has("nvim")
+  let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+ " let test#strategy = "neoterm"
+  tnoremap <Esc> <C-\><C-n>
+  let g:neoterm_default_mod = "vertical"
+endif
 
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
@@ -129,6 +137,15 @@ nmap <space><space> <C-^><CR>
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
 
+" easier split pane navigation
+nmap <C-J> <C-W><C-J>
+nmap <C-K> <C-W><C-K>
+nmap <C-L> <C-W><C-L>
+nmap <C-H> <C-W><C-H>
+set splitbelow
+set splitright
+
+" functions
 function s:Mkdir()
   let dir = expand('%:p:h')
 
@@ -139,23 +156,16 @@ function s:Mkdir()
 endfunction
 
 function! DockerComposeStrategy(cmd)
-  execute "!" . ' docker-compose exec test bundle exec spring ' . a:cmd
+  execute "T" . ' docker-compose exec test bundle exec ' . a:cmd
 endfunction
 
 let g:test#custom_strategies = {'docker-compose': function('DockerComposeStrategy')}
 let g:test#strategy = 'docker-compose'
-
 let test#ruby#bundle_exec = 0
 let test#ruby#use_binstubs = 1
+let g:test#preserve_screen = 1
 
 " elm
 " nnoremap <leader>em :ElmMakeCurrentFile<CR>
 " autocmd BufWritePost *.elm ElmMakeCurrentFile
 
-" easier split pane navigation
-nmap <C-J> <C-W><C-J>
-nmap <C-K> <C-W><C-K>
-nmap <C-L> <C-W><C-L>
-nmap <C-H> <C-W><C-H>
-set splitbelow
-set splitright
