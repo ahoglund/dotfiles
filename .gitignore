@@ -11,3 +11,4 @@
 !.git-prompt.sh
 !.vim-setup.sh
 !.vimbundles
+!.config/*

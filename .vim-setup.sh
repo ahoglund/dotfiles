@@ -1,11 +1,7 @@
 #!/bin/bash
+brew install the_silver_searcher nvim fzf;
 
-for i in $(cat .vimbundles); do
-  mkdir -p ~/.vim/bundle/;
-  cd ~/.vim/bundle/;
-  git clone git@github.com:${i}.git;
-done;
+mkdir -p ~/.vim/autoload ~/.vim/bundle ~/.config;
+ln -s ~/.vim ~/.config/nvim
+ln -s ~/.vimrc ~/.config/nvim/init.vim
 
-mkdir -p ~/.vim/autoload ~/.vim/bundle;
-curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim;
-brew install the_silver_searcher;

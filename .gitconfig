@@ -9,5 +9,5 @@
     pl = pull
     ps = push
 [user]
-	email =
+	email = 
 	name = Andrew Hoglund
