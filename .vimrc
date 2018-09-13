@@ -74,6 +74,10 @@ map <space> <leader>
 " Fuzzy Finder
 nmap <silent> <leader>r :Files<CR>
 
+" Touchbar!
+inoremap jj <esc>
+inoremap jk <esc>
+
 " vim-test
 nmap <silent> <leader>t :TestNearest<CR>
 nmap <silent> <leader>T :TestFile<CR>
@@ -156,7 +160,7 @@ function s:Mkdir()
 endfunction
 
 function! DockerComposeStrategy(cmd)
-  execute "T" . ' docker-compose exec test bundle exec ' . a:cmd
+  execute "T" . ' docker-compose exec test bundle exec spring ' . a:cmd
 endfunction
 
 let g:test#custom_strategies = {'docker-compose': function('DockerComposeStrategy')}
