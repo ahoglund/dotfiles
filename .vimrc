@@ -87,7 +87,7 @@ nmap <silent> <leader>g :TestVisit<CR>
 
 if has("nvim")
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
- " let test#strategy = "neoterm"
+  let test#strategy = "neoterm"
   tnoremap <Esc> <C-\><C-n>
   let g:neoterm_default_mod = "vertical"
 endif
@@ -159,15 +159,21 @@ function s:Mkdir()
   endif
 endfunction
 
-function! DockerComposeStrategy(cmd)
-  execute "T" . ' docker-compose exec test bundle exec spring ' . a:cmd
+" function! DockerComposeStrategy(cmd)
+"   execute "T" . ' docker-compose exec test bundle exec spring ' . a:cmd
+" endfunction
+"
+function! LocalSpringStrategy(cmd)
+  execute "T" . ' bundle exec spring ' . a:cmd
 endfunction
 
-let g:test#custom_strategies = {'docker-compose': function('DockerComposeStrategy')}
-let g:test#strategy = 'docker-compose'
+" let g:test#custom_strategies = {'docker-compose': function('DockerComposeStrategy')}
+" let g:test#strategy = 'docker-compose'
+" let test#ruby#use_binstubs = 1
+" let g:test#preserve_screen = 1
 let test#ruby#bundle_exec = 0
-let test#ruby#use_binstubs = 1
-let g:test#preserve_screen = 1
+let g:test#custom_strategies = {'local-spring': function('LocalSpringStrategy')}
+let g:test#strategy = 'local-spring'
 
 " elm
 " nnoremap <leader>em :ElmMakeCurrentFile<CR>
