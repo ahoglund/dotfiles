@@ -1,5 +1,12 @@
+[user]
+	name = Andrew Hoglund
+	email = 
+[github]
+	user = ahoglund
 [push]
 	default = simple
+[credential]
+	helper = osxkeychain
 [alias]
     st = status
     df = diff
@@ -8,6 +15,3 @@
     br = branch
     pl = pull
     ps = push
-[user]
-	email = 
-	name = Andrew Hoglund

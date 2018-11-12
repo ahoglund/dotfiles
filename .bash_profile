@@ -68,8 +68,10 @@ if type nvim > /dev/null 2>&1; then
   alias vim='nvim'
 fi
 
-source ~/.git-completion.sh
-source ~/.git-prompt.sh
+if [ -f ~/.git-prompt.sh ]; then
+  source ~/.git-prompt.sh
+fi
+
 PS1="\[$BLUE\]\u\[$YELLOW\]\[$YELLOW\]\w\[\033[m\]\[$MAGENTA\]\$(__git_ps1)\[$WHITE\]\$ "
 
 export PATH="$HOME/.cargo/bin:$PATH"
