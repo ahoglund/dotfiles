@@ -11,6 +11,7 @@ Plug 'ElmCast/elm-vim'
 Plug 'keith/rspec.vim'
 Plug 'godlygeek/tabular'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-commentary'
@@ -159,21 +160,26 @@ function s:Mkdir()
   endif
 endfunction
 
-" function! DockerComposeStrategy(cmd)
-"   execute "T" . ' docker-compose exec test bundle exec spring ' . a:cmd
-" endfunction
-"
+function! DockerComposeStrategy(cmd)
+  execute "T" . ' docker-compose exec test bundle exec spring ' . a:cmd
+endfunction
+
 function! LocalSpringStrategy(cmd)
   execute "T" . ' bundle exec spring ' . a:cmd
 endfunction
 
-" let g:test#custom_strategies = {'docker-compose': function('DockerComposeStrategy')}
-" let g:test#strategy = 'docker-compose'
+function! GhZeusStrategy(cmd)
+  execute "T" . ' bin/tt ' . a:cmd
+endfunction
+
+" let g:test#ruby#minitest#executable = 'zeus test'
+" let g:test#ruby#rails#executable = 'zeus test'
+
+" let g:test#custom_strategies = {'docker-compose': function('DockerComposeStrategy'), 'gh-zeus': function('GhZeusStrategy')}
+" let g:test#strategy = 'gh-zeus'
+" let test#ruby#bundle_exec = 0
 " let test#ruby#use_binstubs = 1
 " let g:test#preserve_screen = 1
-let test#ruby#bundle_exec = 0
-let g:test#custom_strategies = {'local-spring': function('LocalSpringStrategy')}
-let g:test#strategy = 'local-spring'
 
 " elm
 " nnoremap <leader>em :ElmMakeCurrentFile<CR>

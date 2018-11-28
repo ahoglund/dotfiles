@@ -12,3 +12,7 @@
 !.setup.sh
 !.vimbundles
 !.config/*
+!.git_template/
+!.git_template/*
+!.git_template/hooks/
+!.git_template/hooks/*

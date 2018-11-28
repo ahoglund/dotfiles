@@ -1,12 +1,12 @@
 [user]
-	name = Andrew Hoglund
-	email = 
+    name = Andrew Hoglund
+    email =
 [github]
-	user = ahoglund
+    user = ahoglund
 [push]
-	default = simple
+    default = simple
 [credential]
-	helper = osxkeychain
+    helper = osxkeychain
 [alias]
     st = status
     df = diff
@@ -15,3 +15,5 @@
     br = branch
     pl = pull
     ps = push
+[init]
+    templatedir = ~/.git_template

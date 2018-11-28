@@ -3,7 +3,8 @@
 brew install reattach-to-user-namespace
 brew install tmux
 brew install hub
-brew install the_silver_searcher nvim fzf;
+brew install ctags
+brew install the_silver_searcher nvim fzf
 
 mkdir -p ~/.vim/autoload ~/.vim/bundle ~/.config;
 ln -s ~/.vim ~/.config/nvim
