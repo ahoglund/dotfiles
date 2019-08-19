@@ -17,3 +17,4 @@
 !.git_template/hooks/
 !.git_template/hooks/*
 !.railscast.colors.itermcolors
+!start_tmux.sh
