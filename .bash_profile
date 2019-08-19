@@ -15,11 +15,17 @@ git config --global user.email "$GIT_EMAIL"
 PATH=$PATH:$HOME/bin:/Applications/Xcode.app/Contents/Applications/Application\ Loader.app/Contents/itms/bin
 export CLICOLOR=1
 export GREP_OPTIONS='--color=auto'
+export GOPATH=$HOME/src/go
+export GO111MODULE=auto
+
+# remember history between IEx sessions
+export ERL_AFLAGS="-kernel shell_history enabled"
 
 # set command line editor to vi
 set -o vi
 
 ## command aliases ##
+alias git=hub
 alias cp='cp -iv'
 alias mv='mv -iv'
 alias mkdir='mkdir -pv'
@@ -49,6 +55,8 @@ alias vimrc="vim ~/.vimrc"
 alias bash_profile="vim ~/.bash_profile"
 alias git_conflicts='git diff --name-only --diff-filter=U'
 alias gcp="git cherry-pick"
+alias dc="docker-compose"
+alias agl="ag -l"
 
 ## activate bash completion ##
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
@@ -75,3 +83,7 @@ fi
 PS1="\[$BLUE\]\u\[$YELLOW\]\[$YELLOW\]\w\[\033[m\]\[$MAGENTA\]\$(__git_ps1)\[$WHITE\]\$ "
 
 export PATH="$HOME/.cargo/bin:$PATH"
+
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
+`eval "$(nodenv init -)"`

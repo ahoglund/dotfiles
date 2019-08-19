@@ -16,3 +16,4 @@
 !.git_template/*
 !.git_template/hooks/
 !.git_template/hooks/*
+!.railscast.colors.itermcolors

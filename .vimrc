@@ -5,7 +5,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/bundle')
-Plug 'scrooloose/nerdtree'
+" Plug 'scrooloose/nerdtree'
 " Plug 'wincent/command-t'
 Plug 'ElmCast/elm-vim'
 Plug 'keith/rspec.vim'
@@ -14,32 +14,42 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-surround'
 Plug 'elixir-lang/vim-elixir'
 Plug 'vim-ruby/vim-ruby'
 Plug 'janko-m/vim-test'
+Plug 'bswinnerton/vim-test-github'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'kana/vim-textobj-user'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'neomake/neomake'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-surround'
 Plug 'rakr/vim-one'
+Plug 'jpo/vim-railscasts-theme'
 Plug 'kassio/neoterm'
+Plug 'fatih/vim-go'
 call plug#end()
 
 " strip whitespace on save
 autocmd BufWritePre * :%s/\s\+$//e
 " convert tabs on save
 autocmd BufWritePre *.rb :%s/\t\+/  /e
+" convert tabs on save
+autocmd BufWritePre *.java :%s/\t\+/  /e
 " mkdir if file doesn't exist
 autocmd BufWritePre * call s:Mkdir()
 
 call neomake#configure#automake('w')
 
+" colorscheme one
+colorscheme railscasts
 set background=dark
-colorscheme one
+" Showcase comments in italics
+highlight Comment cterm=italic gui=italic
 
 set cursorline  "highlight current line
 set history=50  "keep 50 lines of command line history
@@ -68,11 +78,16 @@ set colorcolumn=+2
 
 set list listchars=tab:»·,trail:·,nbsp:·
 
+" Set status line with current branch (from vim.fugitive)
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+
 " leader key remapped to spacebar
 let mapleader=","
 map <space> <leader>
 
 " Fuzzy Finder
+" Use GFiles so that .gitignore'd files dont show
+" nmap <silent> <leader>r :GFiles<CR>
 nmap <silent> <leader>r :Files<CR>
 
 " Touchbar!
@@ -85,6 +100,9 @@ nmap <silent> <leader>T :TestFile<CR>
 nmap <silent> <leader>a :TestSuite<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>g :TestVisit<CR>
+
+
+let test#runners = {'Ruby': ['GitHub']}
 
 if has("nvim")
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
@@ -138,9 +156,15 @@ nmap <leader>e :edit<SPACE>
 nmap <leader>v :view<SPACE>
 nmap <Leader>fh :%s/:\(\w\+\)\s*=>\s*/\1: /g<CR>
 nmap <space><space> <C-^><CR>
+nmap <Leader>k :bnext<CR>
+nmap <Leader>j :bprevious<CR>
+nmap <Leader>h :bfirst<CR>
 
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
+
+" Git grep visually selected text
+vnoremap <leader>ag y:Ag '<c-r>"' *<cr>
 
 " easier split pane navigation
 nmap <C-J> <C-W><C-J>
@@ -172,6 +196,7 @@ function! GhZeusStrategy(cmd)
   execute "T" . ' bin/tt ' . a:cmd
 endfunction
 
+let test#java#runner = 'gradletest'
 " let g:test#ruby#minitest#executable = 'zeus test'
 " let g:test#ruby#rails#executable = 'zeus test'
 
@@ -185,3 +210,91 @@ endfunction
 " nnoremap <leader>em :ElmMakeCurrentFile<CR>
 " autocmd BufWritePost *.elm ElmMakeCurrentFile
 
+" From @tenderlove via Slack
+" in `:Gblame` mode, `<leader>pr` will open the PR for the sha your cursor is over
+"
+"
+
+let g:rails_projections = {
+\  "test/models/api/*_test.rb": {
+\    "alternate": "app/api/{}.rb",
+\    "type": "api"
+\  },
+\  "app/api/*.rb": {
+\    "alternate": "test/integration/api/{}_test.rb",
+\    "type": "api"
+\  },
+\  "app/api/schemas/v3/schemas/*.json": {
+\    "type": "jsonschema"
+\  },
+\  "app/api/serializer/*_dependency.rb": {
+\    "type": "serializer"
+\  },
+\  "app/controllers/*_controller_methods.rb": {
+\    "alternate": "test/controllers/{}_test.rb",
+\    "type": "controller_methods"
+\  },
+\  "test/integration/api/*_test.rb": {
+\    "alternate": "app/api/{}.rb",
+\    "type": "api-test"
+\  },
+\  "jobs/*.rb": {
+\    "alternate": "test/jobs/{}_test.rb",
+\    "type": "job"
+\  },
+\  "test/jobs/*_test.rb": {
+\    "alternate": "jobs/{}.rb",
+\    "type": "test"
+\  },
+\  "docs/*": {
+\    "type": "doc"
+\  },
+\  "app/view_models/*_view.rb": {
+\    "alternate": "test/view_models/{}_view_test.rb",
+\    "type": "view-model"
+\  },
+\  "test/view_models/{}_view_test.rb": {
+\    "alternate": "app/view_models/{}_view.rb",
+\    "type": "test"
+\  },
+\  "lib/github/transitions/*.rb": {
+\    "alternate": "test/lib/github/transitions/{}_test.rb",
+\    "type": "transition"
+\  },
+\  "test/lib/github/transitions/*_test.rb": {
+\    "alternate": "lib/github/transitions/{}.rb",
+\    "type": "transition-test"
+\  },
+\  "lib/platform/objects/*.rb": {
+\    "alternate": "test/lib/platform/integration/objects/{}_test.rb",
+\    "type": "object"
+\  },
+\  "lib/platform/mutations/*.rb": {
+\    "alternate": "test/lib/platform/integration/mutations/{}_test.rb",
+\    "type": "mutation"
+\  },
+\  "test/rubocop/cop/*.rb": {
+\    "alternate": "test/rubocop/tests/{}_test.rb",
+\    "type": "cop"
+\  },
+\  "app/api/access_control/*_dependency.rb": {
+\    "type": "access-control"
+\  }
+\}
+
+function! OpenPR(sha)
+  let pr_number = system("git log --merges --ancestry-path --oneline ". a:sha . "..master | grep 'pull request' | tail -n1 | awk '{print $5}' | cut -c2-")
+  let remote = fugitive#RemoteUrl(".")
+  let root = rhubarb#homepage_for_url(remote)
+  let url = root . '/pull/' . substitute(pr_number, '\v\C\n', '', 1)
+  call netrw#BrowseX(url, 0)
+endfunction
+
+augroup fugitive_ext
+  autocmd!
+  " Browse to the commit under my cursor
+  autocmd FileType fugitiveblame nnoremap <buffer> <localleader>gb :execute ":Gbrowse " . expand("<cword>")<cr>
+
+  " Browse to the PR for commit under my cursor
+  autocmd FileType fugitiveblame nnoremap <buffer> <localleader>pr :call OpenPR(expand("<cword>"))<cr>
+augroup END
