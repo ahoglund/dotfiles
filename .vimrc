@@ -32,6 +32,7 @@ Plug 'rakr/vim-one'
 Plug 'jpo/vim-railscasts-theme'
 Plug 'kassio/neoterm'
 Plug 'fatih/vim-go'
+Plug 'leafgarland/typescript-vim'
 call plug#end()
 
 " strip whitespace on save
@@ -141,7 +142,7 @@ nmap <leader>c ZZ<CR>
 nmap <leader>w :w!<CR>
 
 " buffer nav
-nmap <Leader>b :ls<CR>
+nmap <Leader>b :Buffers<CR>
 nmap <Leader>1 :1b<CR>
 nmap <Leader>2 :2b<CR>
 nmap <Leader>3 :3b<CR>

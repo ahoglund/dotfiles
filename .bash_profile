@@ -17,6 +17,7 @@ export CLICOLOR=1
 export GREP_OPTIONS='--color=auto'
 export GOPATH=$HOME/src/go
 export GO111MODULE=auto
+export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/opt/openssl/lib/
 
 # remember history between IEx sessions
 export ERL_AFLAGS="-kernel shell_history enabled"
