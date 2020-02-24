@@ -1,12 +1,9 @@
 [user]
   name = Andrew Hoglund
-	email = 
 [github]
   user = ahoglund
 [push]
   default = simple
-[credential]
-  helper = osxkeychain
 [alias]
   st = status
   df = diff
@@ -20,5 +17,5 @@
   templatedir = ~/.git_template
 [url "git@github.com:"]
   insteadOf = https://github.com/
-[credential]
-  helper = cache --timeout=3600
+[gpg]
+  program = gpg2
