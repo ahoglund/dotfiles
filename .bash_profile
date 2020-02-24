@@ -87,4 +87,4 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
-`eval "$(nodenv init -)"`
+eval "$(nodenv init -)"

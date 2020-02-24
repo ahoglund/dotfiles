@@ -31,8 +31,9 @@ Plug 'junegunn/fzf.vim'
 Plug 'rakr/vim-one'
 Plug 'jpo/vim-railscasts-theme'
 Plug 'kassio/neoterm'
-Plug 'fatih/vim-go'
+" Plug 'fatih/vim-go'
 Plug 'leafgarland/typescript-vim'
+Plug 'digitaltoad/vim-pug'
 call plug#end()
 
 " strip whitespace on save
@@ -51,6 +52,9 @@ colorscheme railscasts
 set background=dark
 " Showcase comments in italics
 highlight Comment cterm=italic gui=italic
+
+" faster syntax highlighting
+set re=1
 
 set cursorline  "highlight current line
 set history=50  "keep 50 lines of command line history
@@ -89,27 +93,27 @@ map <space> <leader>
 " Fuzzy Finder
 " Use GFiles so that .gitignore'd files dont show
 " nmap <silent> <leader>r :GFiles<CR>
-nmap <silent> <leader>r :Files<CR>
+nmap <silent> <Leader>r :Files<CR>
 
 " Touchbar!
 inoremap jj <esc>
 inoremap jk <esc>
 
 " vim-test
-nmap <silent> <leader>t :TestNearest<CR>
-nmap <silent> <leader>T :TestFile<CR>
-nmap <silent> <leader>a :TestSuite<CR>
-nmap <silent> <leader>l :TestLast<CR>
-nmap <silent> <leader>g :TestVisit<CR>
-
+nmap <Leader>t :TestNearest<CR>
+nmap <Leader>T :TestFile<CR>
+nmap <Leader>a :TestSuite<CR>
+nmap <Leader>l :TestLast<CR>
+nmap <Leader>g :TestVisit<CR>
 
 let test#runners = {'Ruby': ['GitHub']}
 
 if has("nvim")
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-  let test#strategy = "neoterm"
+  let test#strategy = "neovim"
   tnoremap <Esc> <C-\><C-n>
-  let g:neoterm_default_mod = "vertical"
+  let g:neoterm_default_mod = 'verbose'
+  let g:test#preserve_screen = 1
 endif
 
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
@@ -136,10 +140,10 @@ vmap <Leader>ah :Tabularize /:\zs<CR>
 nmap <Leader>ahr :Tabularize /=><CR>
 vmap <Leader>ahr :Tabularize /=><CR>
 
-nmap <silent> <leader>s :!<CR>
-nmap <leader>f /<C-R><C-W><CR>
-nmap <leader>c ZZ<CR>
-nmap <leader>w :w!<CR>
+nmap <silent> <Leader>s :!<CR>
+nmap <Leader>f /<C-R><C-W><CR>
+nmap <Leader>c ZZ<CR>
+nmap <Leader>w :w!<CR>
 
 " buffer nav
 nmap <Leader>b :Buffers<CR>
@@ -153,8 +157,8 @@ nmap <Leader>7 :7b<CR>
 nmap <Leader>8 :8b<CR>
 nmap <Leader>9 :9b<CR>
 nmap <Leader>0 :10b<CR>
-nmap <leader>e :edit<SPACE>
-nmap <leader>v :view<SPACE>
+nmap <Leader>e :edit<SPACE>
+nmap <Leader>v :view<SPACE>
 nmap <Leader>fh :%s/:\(\w\+\)\s*=>\s*/\1: /g<CR>
 nmap <space><space> <C-^><CR>
 nmap <Leader>k :bnext<CR>
@@ -165,7 +169,7 @@ vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
 
 " Git grep visually selected text
-vnoremap <leader>ag y:Ag '<c-r>"' *<cr>
+vnoremap <Leader>ag y:Ag '<c-r>"' *<cr>
 
 " easier split pane navigation
 nmap <C-J> <C-W><C-J>
@@ -176,6 +180,7 @@ set splitbelow
 set splitright
 
 " functions
+
 function s:Mkdir()
   let dir = expand('%:p:h')
 
@@ -184,37 +189,6 @@ function s:Mkdir()
     echo 'Created non-existing directory: '.dir
   endif
 endfunction
-
-function! DockerComposeStrategy(cmd)
-  execute "T" . ' docker-compose exec test bundle exec spring ' . a:cmd
-endfunction
-
-function! LocalSpringStrategy(cmd)
-  execute "T" . ' bundle exec spring ' . a:cmd
-endfunction
-
-function! GhZeusStrategy(cmd)
-  execute "T" . ' bin/tt ' . a:cmd
-endfunction
-
-let test#java#runner = 'gradletest'
-" let g:test#ruby#minitest#executable = 'zeus test'
-" let g:test#ruby#rails#executable = 'zeus test'
-
-" let g:test#custom_strategies = {'docker-compose': function('DockerComposeStrategy'), 'gh-zeus': function('GhZeusStrategy')}
-" let g:test#strategy = 'gh-zeus'
-" let test#ruby#bundle_exec = 0
-" let test#ruby#use_binstubs = 1
-" let g:test#preserve_screen = 1
-
-" elm
-" nnoremap <leader>em :ElmMakeCurrentFile<CR>
-" autocmd BufWritePost *.elm ElmMakeCurrentFile
-
-" From @tenderlove via Slack
-" in `:Gblame` mode, `<leader>pr` will open the PR for the sha your cursor is over
-"
-"
 
 let g:rails_projections = {
 \  "test/models/api/*_test.rb": {
