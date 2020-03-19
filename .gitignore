@@ -1,8 +1,8 @@
 #ignore all
-.gitconfig
 *
 
 #exceptions
+!.gitconfig
 !.vimrc
 !.tmux.conf
 !.slate
@@ -18,3 +18,5 @@
 !.git_template/hooks/*
 !.railscast.colors.itermcolors
 !start_tmux.sh
+!.hammerspoon/
+!.hammerspoon/*

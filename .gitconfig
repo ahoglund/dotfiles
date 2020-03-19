@@ -1,7 +1,3 @@
-[user]
-  name = Andrew Hoglund
-[github]
-  user = ahoglund
 [push]
   default = simple
 [alias]
@@ -19,3 +15,5 @@
   insteadOf = https://github.com/
 [gpg]
   program = gpg2
+[user]
+	email = 
