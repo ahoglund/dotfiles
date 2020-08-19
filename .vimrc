@@ -5,35 +5,43 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/bundle')
-" Plug 'scrooloose/nerdtree'
-" Plug 'wincent/command-t'
-Plug 'ElmCast/elm-vim'
+" Rspec syntax
 Plug 'keith/rspec.vim'
+" Tabular, for lining up things
 Plug 'godlygeek/tabular'
+" Git
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rails'
-Plug 'tpope/vim-sensible'
+" Plug 'jeffkreeftmeijer/neovim-sensible'
+" Add ends to certain blocks in various langs
 Plug 'tpope/vim-endwise'
+" allow for commenting
 Plug 'tpope/vim-commentary'
+" GitHub
 Plug 'tpope/vim-rhubarb'
+" change things that surround things
 Plug 'tpope/vim-surround'
 Plug 'elixir-lang/vim-elixir'
 Plug 'vim-ruby/vim-ruby'
 Plug 'janko-m/vim-test'
-Plug 'bswinnerton/vim-test-github'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'kana/vim-textobj-user'
 Plug 'nelstrom/vim-textobj-rubyblock'
+" Linting, Compiling and stuff
 Plug 'neomake/neomake'
+" Finding stuff, faster
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+" Theme
 Plug 'rakr/vim-one'
 Plug 'jpo/vim-railscasts-theme'
 Plug 'kassio/neoterm'
-" Plug 'fatih/vim-go'
 Plug 'leafgarland/typescript-vim'
 Plug 'digitaltoad/vim-pug'
+Plug 'vimwiki/vimwiki'
+Plug 'fatih/vim-go'
+
 call plug#end()
 
 " strip whitespace on save
@@ -47,6 +55,7 @@ autocmd BufWritePre * call s:Mkdir()
 
 call neomake#configure#automake('w')
 
+" set virtualedit=all
 " colorscheme one
 colorscheme railscasts
 set background=dark
@@ -86,9 +95,14 @@ set list listchars=tab:»·,trail:·,nbsp:·
 " Set status line with current branch (from vim.fugitive)
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
+" Just in case, for vimwiki
+set nocompatible
+filetype plugin on
+syntax on
+
 " leader key remapped to spacebar
 let mapleader=","
-map <space> <leader>
+map <space> <Leader>
 
 " Fuzzy Finder
 " Use GFiles so that .gitignore'd files dont show
@@ -106,15 +120,24 @@ nmap <Leader>a :TestSuite<CR>
 nmap <Leader>l :TestLast<CR>
 nmap <Leader>g :TestVisit<CR>
 
-let test#runners = {'Ruby': ['GitHub']}
+nmap <Leader>f /<C-R><C-W><CR>
+nnoremap <Leader>fr :%s/\<<C-r><C-w>\>/
+vnoremap <Leader>fr "hy:%s/<C-r>h/
 
 if has("nvim")
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
   let test#strategy = "neovim"
   tnoremap <Esc> <C-\><C-n>
-  let g:neoterm_default_mod = 'verbose'
+  let g:neoterm_default_mod = 'vertical'
   let g:test#preserve_screen = 1
 endif
+
+" Use ripgrep if available
+" if executable('rg')
+"   set grepprg=rg\ --nocolor
+"   let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+"   let g:ctrlp_use_caching = 0
+" endif
 
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
@@ -140,10 +163,8 @@ vmap <Leader>ah :Tabularize /:\zs<CR>
 nmap <Leader>ahr :Tabularize /=><CR>
 vmap <Leader>ahr :Tabularize /=><CR>
 
-nmap <silent> <Leader>s :!<CR>
-nmap <Leader>f /<C-R><C-W><CR>
 nmap <Leader>c ZZ<CR>
-nmap <Leader>w :w!<CR>
+nmap <Leader>s :w!<CR>
 
 " buffer nav
 nmap <Leader>b :Buffers<CR>
@@ -167,6 +188,11 @@ nmap <Leader>h :bfirst<CR>
 
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
+vnoremap <C-l> :><CR>gv=gv
+vnoremap <C-h> :<<CR>gv=gv
+
+"copy visual selection to clipboard
+vnoremap <C-c> "*y<CR>
 
 " Git grep visually selected text
 vnoremap <Leader>ag y:Ag '<c-r>"' *<cr>

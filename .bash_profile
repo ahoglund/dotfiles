@@ -16,6 +16,8 @@ PATH=$PATH:$HOME/bin:/Applications/Xcode.app/Contents/Applications/Application\ 
 export CLICOLOR=1
 export GREP_OPTIONS='--color=auto'
 export GOPATH=$HOME/src/go
+export GOBIN=$GOPATH/bin
+PATH=$GOBIN:$PATH
 export GO111MODULE=auto
 export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/opt/openssl/lib/
 
@@ -23,7 +25,7 @@ export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/opt/openssl/lib/
 export ERL_AFLAGS="-kernel shell_history enabled"
 
 # set command line editor to vi
-set -o vi
+# set -o vi
 
 ## command aliases ##
 alias git=hub

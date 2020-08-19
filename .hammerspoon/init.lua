@@ -99,9 +99,9 @@ hs.hotkey.bind({"shift", "alt"}, "M", function()
   local screen = win:screen()
   local max    = screen:frame()
 
-  f.x = max.x + (max.w / 3.33)
+  f.x = max.x + (max.w / 6.5)
   f.y = max.y
   f.h = max.h
-  f.w = max.w / 2
+  f.w = max.w / 1.5
   win:setFrame(f)
 end)
