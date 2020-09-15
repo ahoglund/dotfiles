@@ -3,10 +3,14 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
+set shell=/bin/bash
+
+" Just in case, for vimwiki
+set nocompatible
+filetype plugin on
+syntax on
 
 call plug#begin('~/.vim/bundle')
-" Rspec syntax
-Plug 'keith/rspec.vim'
 " Tabular, for lining up things
 Plug 'godlygeek/tabular'
 " Git
@@ -31,16 +35,23 @@ Plug 'nelstrom/vim-textobj-rubyblock'
 " Linting, Compiling and stuff
 Plug 'neomake/neomake'
 " Finding stuff, faster
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " Theme
-Plug 'rakr/vim-one'
-Plug 'jpo/vim-railscasts-theme'
+" Plug 'jpo/vim-railscasts-theme'
 Plug 'kassio/neoterm'
 Plug 'leafgarland/typescript-vim'
 Plug 'digitaltoad/vim-pug'
 Plug 'vimwiki/vimwiki'
 Plug 'fatih/vim-go'
+" LSP
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'sheerun/vim-polyglot'
+
+" I actually have nvim 0.4.3 installed, but since native
+" macOS vim is not greater than 8 something i need to add this
+" to silence vim-go warnings:
+let g:go_version_warning = 0
 
 call plug#end()
 
@@ -56,10 +67,9 @@ autocmd BufWritePre * call s:Mkdir()
 call neomake#configure#automake('w')
 
 " set virtualedit=all
-" colorscheme one
-colorscheme railscasts
 set background=dark
 " Showcase comments in italics
+
 highlight Comment cterm=italic gui=italic
 
 " faster syntax highlighting
@@ -86,8 +96,8 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab
 
-" Make it obvious where 80 characters is
-set textwidth=80
+" Make it obvious where 148 characters is
+set textwidth=148
 set colorcolumn=+2
 
 set list listchars=tab:»·,trail:·,nbsp:·
@@ -95,19 +105,10 @@ set list listchars=tab:»·,trail:·,nbsp:·
 " Set status line with current branch (from vim.fugitive)
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
-" Just in case, for vimwiki
-set nocompatible
-filetype plugin on
-syntax on
-
 " leader key remapped to spacebar
 let mapleader=","
 map <space> <Leader>
 
-" Fuzzy Finder
-" Use GFiles so that .gitignore'd files dont show
-" nmap <silent> <leader>r :GFiles<CR>
-nmap <silent> <Leader>r :Files<CR>
 
 " Touchbar!
 inoremap jj <esc>
@@ -132,29 +133,17 @@ if has("nvim")
   let g:test#preserve_screen = 1
 endif
 
-" Use ripgrep if available
-" if executable('rg')
-"   set grepprg=rg\ --nocolor
-"   let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
-"   let g:ctrlp_use_caching = 0
-" endif
-
-" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag -Q -l --nocolor --hidden -g "" %s'
-
-  " ag is fast enough that CtrlP doesn't need to cache
+nnoremap <C-p> :Files<CR>
+nmap <silent> <Leader>r :Files<CR>
+if executable('rg')
+  let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
   let g:ctrlp_use_caching = 0
+  set grepprg=rg\ --vimgrep
+  command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
 endif
 
-command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-
+nmap \ :Rg<SPACE>
 nmap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-nmap \ :Ag<SPACE>
 
 nmap <Leader>ae :Tabularize /=<CR>
 vmap <Leader>ae :Tabularize /=<CR>
@@ -299,3 +288,26 @@ augroup fugitive_ext
   " Browse to the PR for commit under my cursor
   autocmd FileType fugitiveblame nnoremap <buffer> <localleader>pr :call OpenPR(expand("<cword>"))<cr>
 augroup END
+
+" quickly edit and source vimrc
+nnoremap <Leader>vrce :vsplit $MYVIMRC<cr>
+nnoremap <Leader>vrcs :source $MYVIMRC<cr>
+
+" bespoke abbrev's
+iabbrev rp repository
+" iabbrev org organization
+iabbrev rc recommended
+iabbrev bc because
+iabbrev teh the
+iabbrev adn and
+iabbrev dp deprecated
+iabbrev gql GraphQL
+iabbrev gh GitHub
+iabbrev ts test
+iabbrev ann announcement
+iabbrev arch architecture
+iabbrev comm communication
+iabbrev coo coordination
+" iabbrev dep dependency
+iabbrev enc encoded
+iabbrev dcd decoded

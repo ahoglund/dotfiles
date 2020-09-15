@@ -20,3 +20,5 @@
 !start_tmux.sh
 !.hammerspoon/
 !.hammerspoon/*
+!.gitconfig.local.example
+!.zshrc
