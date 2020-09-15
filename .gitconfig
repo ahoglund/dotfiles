@@ -15,5 +15,3 @@
   insteadOf = https://github.com/
 [gpg]
   program = gpg2
-[user]
-	email =
