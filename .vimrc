@@ -41,6 +41,14 @@ Plug 'leafgarland/typescript-vim'
 Plug 'digitaltoad/vim-pug'
 Plug 'vimwiki/vimwiki'
 Plug 'fatih/vim-go'
+" LSP
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+
+" I actually have nvim 0.4.3 installed, but since native
+" macOS vim is not greater than 8 something i need to add this
+" to silence vim-go warnings:
+let g:go_version_warning = 0
 
 call plug#end()
 
