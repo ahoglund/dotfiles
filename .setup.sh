@@ -30,6 +30,9 @@ mkdir -p ~/.vim/autoload ~/.vim/bundle ~/.config;
 ln -s ~/.vim ~/.config/nvim
 ln -s ~/.vimrc ~/.config/nvim/init.vim
 
+# disable dirty check in zsh git_prompt_info() function, speeds shell up a lot!
+git config --add oh-my-zsh.hide-dirty 1
+
 # Indexing Ruby std-lib
 mkdir -p ~/.rbenv/plugins
 git clone git://github.com/tpope/rbenv-ctags.git \

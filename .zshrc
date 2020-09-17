@@ -5,7 +5,7 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/drew/.oh-my-zsh"
+export ZSH="/Users/$USER/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -161,7 +161,7 @@ PROMPT='[$FG[228]%~%{$reset_color%}]'
 PROMPT+=' $(git_prompt_info)'
 PROMPT+=' %(?.$FG[154].$FG[009])$%{$reset_color%} '
 
-test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+#test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
 eval "$(nodenv init -)"
 eval "$(rbenv init -)"
