@@ -153,10 +153,6 @@ if type nvim > /dev/null 2>&1; then
   alias vim='nvim'
 fi
 
-if [ -f ~/.git-prompt.sh ]; then
-  source ~/.git-prompt.sh
-fi
-
 PROMPT='[$FG[228]%~%{$reset_color%}]'
 PROMPT+=' $(git_prompt_info)'
 PROMPT+=' %(?.$FG[154].$FG[009])$%{$reset_color%} '
