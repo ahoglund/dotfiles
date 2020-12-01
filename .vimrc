@@ -3,6 +3,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
+set shell=/bin/bash
 
 call plug#begin('~/.vim/bundle')
 " Rspec syntax
@@ -34,7 +35,6 @@ Plug 'neomake/neomake'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " Theme
-Plug 'rakr/vim-one'
 Plug 'jpo/vim-railscasts-theme'
 Plug 'kassio/neoterm'
 Plug 'leafgarland/typescript-vim'
@@ -64,10 +64,10 @@ autocmd BufWritePre * call s:Mkdir()
 call neomake#configure#automake('w')
 
 " set virtualedit=all
-" colorscheme one
-colorscheme railscasts
 set background=dark
+colorscheme railscasts
 " Showcase comments in italics
+
 highlight Comment cterm=italic gui=italic
 
 " faster syntax highlighting
@@ -159,7 +159,7 @@ if executable('ag')
   let g:ctrlp_use_caching = 0
 endif
 
-command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 
 nmap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 nmap \ :Ag<SPACE>
@@ -307,3 +307,26 @@ augroup fugitive_ext
   " Browse to the PR for commit under my cursor
   autocmd FileType fugitiveblame nnoremap <buffer> <localleader>pr :call OpenPR(expand("<cword>"))<cr>
 augroup END
+
+" quickly edit and source vimrc
+nnoremap <Leader>vrce :vsplit $MYVIMRC<cr>
+nnoremap <Leader>vrcs :source $MYVIMRC<cr>
+
+" bespoke abbrev's
+iabbrev rp repository
+iabbrev org organization
+iabbrev rc recommended
+iabbrev bc because
+iabbrev teh the
+iabbrev adn and
+iabbrev dp deprecated
+iabbrev gql GraphQL
+iabbrev gh GitHub
+iabbrev ts test
+iabbrev ann announcement
+iabbrev anc architecture
+iabbrev comm communication
+iabbrev coo coordination
+iabbrev dep dependency
+iabbrev enc encoded
+iabbrev dcd decoded
