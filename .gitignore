@@ -2,6 +2,7 @@
 *
 
 #exceptions
+!.config/alacritty/alacritty.yml
 !.gitconfig
 !.vimrc
 !.tmux.conf
@@ -11,7 +12,6 @@
 !.git-prompt.sh
 !.setup.sh
 !.vimbundles
-!.config/*
 !.git_template/
 !.git_template/*
 !.git_template/hooks/
