@@ -9,7 +9,7 @@ if [ -f ~/.bash_private ]; then
 fi
 
 ## setup git email ##
-git config --global user.email "$GIT_EMAIL"
+git config --local user.email "$GIT_EMAIL"
 
 ## env preferences ##
 PATH=$PATH:$HOME/bin:/Applications/Xcode.app/Contents/Applications/Application\ Loader.app/Contents/itms/bin

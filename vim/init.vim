@@ -292,22 +292,3 @@ augroup END
 " quickly edit and source vimrc
 nnoremap <Leader>vrce :vsplit $MYVIMRC<cr>
 nnoremap <Leader>vrcs :source $MYVIMRC<cr>
-
-" bespoke abbrev's
-iabbrev rp repository
-" iabbrev org organization
-iabbrev rc recommended
-iabbrev bc because
-iabbrev teh the
-iabbrev adn and
-iabbrev dp deprecated
-iabbrev gql GraphQL
-iabbrev gh GitHub
-iabbrev ts test
-iabbrev ann announcement
-iabbrev arch architecture
-iabbrev comm communication
-iabbrev coo coordination
-" iabbrev dep dependency
-iabbrev enc encoded
-iabbrev dcd decoded

@@ -15,3 +15,5 @@
   insteadOf = https://github.com/
 [gpg]
   program = gpg2
+[fetch]
+	prune = true

@@ -1,0 +1,57 @@
+#!/bin/bash
+if [ "$(uname -s)" == "Darwin" ]; then
+  brew bundle
+fi
+
+
+mkdir -p ~/.vim/autoload ~/.vim/bundle ~/.config ~/.config/fish ~/.config/alacritty ~/.config/nvim;
+
+ln -s ~/.dotfiles/fish/functions/ ~/.config/fish/functions/
+ln -s ~/.dotfiles/fish/config.fish ~/.config/fish/config.fish
+ln -s ~/.dotfiles/vim ~/.config/nvim
+ln -s ~/.dotfiles/vim/init.vim ~/.vim/init.vim
+ln -s ~/.dotfiles/tmux.conf ~/.tmux.conf
+ln -s ~/.dotfiles/start_tmux.sh ~/start_tmux.sh
+ln -s ~/.dotfiles/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
+ln -s ~/.dotfiles/gitconfig ~/.gitconfig
+ln -s ~/.dotfiles/gemrc ~/.gemrc
+ln -s ~/.dotfiles/git_template ~/.git_template
+ln -s ~/.vim/init.vim ~/.config/nvim/init.vim
+ln -s ~/.dotfiles/hammerspoon/ ~/.hammerspoon
+
+# Indexing Ruby std-lib
+gem install gem-ctags
+mkdir -p ~/.rbenv/plugins
+git clone git://github.com/tpope/rbenv-ctags.git \
+  ~/.rbenv/plugins/rbenv-ctags
+rbenv ctags
+
+# Setup GnuPG
+mkdir -p ~/.gnupg
+cd ~/.gnupg && ln -sf $HOME/.dotfiles/gpg-agent.conf gpg-agent.conf
+
+setup_gitconfig () {
+  if ! [ -f gitconfig.local.example ]
+  then
+    echo 'setup gitconfig'
+
+    git_credential='cache'
+    if [ "$(uname -s)" == "Darwin" ]
+    then
+      git_credential='osxkeychain'
+    fi
+
+    echo ' - What is your github author name?'
+    read -e git_authorname
+    echo ' - What is your github author email?'
+    read -e git_authoremail
+
+    sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" gitconfig.local.example > gitconfig.local
+
+    ln -s ~/.dotfiles/gitconfig.local ~/.gitconfig.local
+
+    success 'gitconfig'
+  fi
+}
+
+setup_gitconfig
