@@ -24,7 +24,7 @@ alias sprc="spring rails console"
 alias sprs="spring rails server"
 alias sprr="spring rake routes"
 alias tmuxconf="vim ~/.tmux.conf"
-alias vimrc="vim ~/.vimrc"
+alias vimrc="vim ~/.vim/init.vim"
 alias zshrc="vim ~/.zshrc"
 alias git_conflicts='git diff --name-only --diff-filter=U'
 alias dc="docker-compose"

@@ -157,8 +157,6 @@ PROMPT='[$FG[228]%~%{$reset_color%}]'
 PROMPT+=' $(git_prompt_info)'
 PROMPT+=' %(?.$FG[154].$FG[009])$%{$reset_color%} '
 
-#test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
-
 eval "$(nodenv init -)"
 eval "$(rbenv init -)"
 

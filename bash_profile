@@ -87,6 +87,4 @@ PS1="\[$BLUE\]\u\[$YELLOW\]\[$YELLOW\]\w\[\033[m\]\[$MAGENTA\]\$(__git_ps1)\[$WH
 
 export PATH="$HOME/.cargo/bin:$PATH"
 
-test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
-
 eval "$(nodenv init -)"
