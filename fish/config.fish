@@ -1,4 +1,3 @@
-source ~/.config/fish/private.fish
 
 # cmd
 alias git=hub
@@ -47,11 +46,14 @@ fish_add_path $HOME/src/go/bin
 fish_add_path $HOME/.rbenv/bin
 fish_add_path $HOME/.cargo/bin
 fish_add_path $HOME/.yarn/bin
+fish_add_path $HOME/.config/yarn/global/node_modules/.bin
+fish_add_path $GOBIN
 fish_add_path /usr/local/opt/gnu-sed/libexec/gnubin
 fish_add_path /usr/local/opt/fzf/bin
-fish_add_path $GOBIN
-fish_add_path $HOME/.config/yarn/global/node_modules/.bin
+fish_add_path /usr/local/opt/heroku-node/bin
+fish_add_path -aP $HOME/bin
 
 status --is-interactive; and source (rbenv init -|psub)
 status --is-interactive; and source (nodenv init -|psub)
-set -g fish_user_paths "/usr/local/opt/heroku-node/bin" $fish_user_paths
+
+source ~/.config/fish/private.fish

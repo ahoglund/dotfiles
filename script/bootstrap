@@ -26,6 +26,8 @@ ln -s ~/.config/nvim ~/.vim
 
 ln -s ~/.dotfiles/hammerspoon/ ~/.hammerspoon
 
+ ln -sf ~/.dotfiles/bin ~/bin
+
 # Indexing Ruby std-lib
 gem install gem-ctags
 mkdir -p ~/.rbenv/plugins

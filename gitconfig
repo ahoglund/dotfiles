@@ -17,3 +17,11 @@
   program = gpg2
 [fetch]
 	prune = true
+[pull]
+	rebase = false
+[commit]
+	gpgsign = true
+[user]
+	signingkey = 513674C41DD2CAB3
+[core]
+	editor = nvim

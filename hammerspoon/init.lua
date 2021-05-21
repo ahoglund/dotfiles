@@ -99,9 +99,22 @@ hs.hotkey.bind({"shift", "alt"}, "M", function()
   local screen = win:screen()
   local max    = screen:frame()
 
-  f.x = max.x + (max.w / 6.5)
+  f.x = max.x + (max.w / 6.2)
   f.y = max.y
   f.h = max.h
+  f.w = max.w / 1.5
+  win:setFrame(f)
+end)
+
+hs.hotkey.bind({"shift", "alt"}, "Z", function()
+  local win    = hs.window.focusedWindow()
+  local f      = win:frame()
+  local screen = win:screen()
+  local max    = screen:frame()
+
+  f.x = max.x + (max.w / 6.2)
+  f.y = max.y
+  f.h = max.h / 1.8
   f.w = max.w / 1.5
   win:setFrame(f)
 end)
