@@ -1,10 +1,17 @@
 #!/bin/bash
+
+exec > >(tee -i $HOME/creation.log)
+exec 2>&1
+set -x
+
 if [ "$(uname -s)" == "Darwin" ]; then
   brew bundle
 fi
 
 # Setup fzf
-$(brew --prefix)/opt/fzf/install
+if [ "$(uname -s)" == "Darwin" ]; then
+  $(brew --prefix)/opt/fzf/install
+fi
 
 mkdir -p ~/.vim/autoload ~/.vim/bundle ~/.config/fish ~/.config/alacritty ~/.config/nvim;
 
@@ -12,21 +19,21 @@ mkdir -p ~/.vim/autoload ~/.vim/bundle ~/.config/fish ~/.config/alacritty ~/.con
 touch ~/.config/fish/private.fish
 touch ~/.bash_private
 
-ln -s ~/.dotfiles/fish/functions/ ~/.config/fish/functions/
-ln -s ~/.dotfiles/fish/config.fish ~/.config/fish/config.fish
-ln -s ~/.dotfiles/tmux.conf ~/.tmux.conf
-ln -s ~/.dotfiles/start_tmux.sh ~/start_tmux.sh
-ln -s ~/.dotfiles/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
-ln -s ~/.dotfiles/gitconfig ~/.gitconfig
-ln -s ~/.dotfiles/gemrc ~/.gemrc
-ln -s ~/.dotfiles/git_template ~/.git_template
+ln -s $(pwd)/fish/functions/ ~/.config/fish/functions/
+ln -s $(pwd)/fish/config.fish ~/.config/fish/config.fish
+ln -s $(pwd)/tmux.conf ~/.tmux.conf
+ln -s $(pwd)/start_tmux.sh ~/start_tmux.sh
+ln -s $(pwd)/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
+ln -s $(pwd)/gitconfig ~/.gitconfig
+ln -s $(pwd)/gemrc ~/.gemrc
+ln -s $(pwd)/git_template ~/.git_template
 
-ln -s ~/.dotfiles/vim/init.vim ~/.vim/init.vim
+ln -s $(pwd)/vim/init.vim ~/.vim/init.vim
 ln -s ~/.config/nvim ~/.vim
 
-ln -s ~/.dotfiles/hammerspoon/ ~/.hammerspoon
+ln -s $(pwd)/hammerspoon/ ~/.hammerspoon
 
- ln -sf ~/.dotfiles/bin ~/bin
+ ln -sf $(pwd)/bin ~/bin
 
 # Indexing Ruby std-lib
 gem install gem-ctags
@@ -57,7 +64,7 @@ setup_gitconfig () {
 
     sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" gitconfig.local.example > gitconfig.local
 
-    ln -s ~/.dotfiles/gitconfig.local ~/.gitconfig.local
+    ln -s $(pwd)/gitconfig.local ~/.gitconfig.local
 
     success 'gitconfig'
   fi
