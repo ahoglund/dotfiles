@@ -20,7 +20,7 @@
 [pull]
   rebase = false
 [commit]
-  gpgsign = true
+  gpgsign = false
 [user]
   signingkey = 513674C41DD2CAB3
 [core]

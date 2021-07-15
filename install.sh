@@ -16,7 +16,9 @@ fi
 mkdir -p ~/.vim/autoload ~/.vim/bundle ~/.config/fish ~/.config/alacritty ~/.config/nvim;
 
 # Install oh-my-zsh
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+if ! [ -d ~/.oh-my-zsh ]; then
+  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
 
 # A place for private configs
 touch ~/.config/fish/private.fish
@@ -43,16 +45,19 @@ ln -s $(pwd)/hammerspoon/ ~/.hammerspoon
 # Indexing Ruby std-lib
 gem install gem-ctags
 mkdir -p ~/.rbenv/plugins
-git clone git://github.com/tpope/rbenv-ctags.git \
-  ~/.rbenv/plugins/rbenv-ctags
-rbenv ctags
+
+if ! [ -d ~/.rbenv/plugins/rbenv-ctags ]; then
+  git clone git://github.com/tpope/rbenv-ctags.git \
+    ~/.rbenv/plugins/rbenv-ctags
+  rbenv ctags
+fi
 
 # Setup GnuPG
 mkdir -p ~/.gnupg
 cd ~/.gnupg && ln -sf $HOME/.dotfiles/gpg-agent.conf gpg-agent.conf
 
 setup_gitconfig () {
-  if ! [ -f gitconfig.local.example ]
+  if ! [ -f gitconfig.local ]
   then
     echo 'setup gitconfig'
 
