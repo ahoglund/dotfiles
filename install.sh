@@ -15,6 +15,9 @@ fi
 
 mkdir -p ~/.vim/autoload ~/.vim/bundle ~/.config/fish ~/.config/alacritty ~/.config/nvim;
 
+# Install oh-my-zsh
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
 # A place for private configs
 touch ~/.config/fish/private.fish
 touch ~/.bash_private
@@ -26,6 +29,8 @@ ln -s $(pwd)/start_tmux.sh ~/start_tmux.sh
 ln -s $(pwd)/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
 ln -s $(pwd)/gitconfig ~/.gitconfig
 ln -s $(pwd)/gemrc ~/.gemrc
+ln -s $(pwd)/bash_profile ~/.bash_profile
+ln -s $(pwd)/zshrc ~/.zshrc
 ln -s $(pwd)/git_template ~/.git_template
 
 ln -s $(pwd)/vim/init.vim ~/.vim/init.vim
@@ -65,8 +70,6 @@ setup_gitconfig () {
     sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" gitconfig.local.example > gitconfig.local
 
     ln -s $(pwd)/gitconfig.local ~/.gitconfig.local
-
-    success 'gitconfig'
   fi
 }
 
