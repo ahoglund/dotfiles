@@ -1,6 +1,7 @@
 #!/bin/bash
 
 setup_gitconfig () {
+  cd ~/dotfiles
   if ! [ -f gitconfig.local ]
   then
     echo 'setup gitconfig'
