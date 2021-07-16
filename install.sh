@@ -37,7 +37,7 @@ touch $HOME/.config/fish/private.fish
 touch $HOME/.bash_private
 touch $HOME/.zsh_private
 
-ln -s $dotfiles_dir/fish/functions/ $HOME/.config/fish/functions/
+ln -s $dotfiles_dir/fish/functions $HOME/.config/fish/functions
 ln -s $dotfiles_dir/fish/config.fish $HOME/.config/fish/config.fish
 
 rm -f $HOME/.tmux.conf
