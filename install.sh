@@ -21,9 +21,9 @@ else
   curl -L https://github.com/junegunn/fzf/releases/download/0.27.2/fzf-0.27.2-linux_amd64.tar.gz | tar xzC $HOME/bin
 fi
 
-#install neovim
+#install neovim and ctags
 if [ "$(uname -s)" == "Linux" ]; then
-  sudo apt-get install -y libfuse2
+  sudo apt-get install -y libfuse2 ctags
   curl -L -o $HOME/bin/nvim https://github.com/neovim/neovim/releases/download/v0.5.0/nvim.appimage
   chmod a+x $HOME/bin/nvim
 fi
