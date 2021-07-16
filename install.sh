@@ -6,6 +6,8 @@ set -x
 
 dotfiles_dir=$(pwd)
 
+mkdir -p ~/.vim/autoload ~/.vim/bundle ~/.config/fish ~/.config/alacritty ~/.config/nvim;
+
 if [ "$(uname -s)" == "Darwin" ]; then
   brew bundle
 fi
@@ -24,7 +26,8 @@ if [ "$(uname -s)" == "Linux" ]; then
   chmod a+x $HOME/bin/nvim
 fi
 
-mkdir -p ~/.vim/autoload ~/.vim/bundle ~/.config/fish ~/.config/alacritty ~/.config/nvim;
+# Install vim plugins
+vim -Es -u $HOME/.vimrc -c "PlugInstall | qa"
 
 # Remove the oh-my's
 rm -rf ~/.oh-my-zsh
@@ -33,6 +36,7 @@ rm -rf ~/.oh-my-bash
 # A place for private configs
 touch ~/.config/fish/private.fish
 touch ~/.bash_private
+touch ~/.zsh_private
 
 ln -s $dotfiles_dir/fish/functions/ ~/.config/fish/functions/
 ln -s $dotfiles_dir/fish/config.fish ~/.config/fish/config.fish
