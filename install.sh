@@ -59,8 +59,8 @@ ln -s $dotfiles_dir/zshrc $HOME/.zshrc
 
 ln -s $dotfiles_dir/git_template $HOME/.git_template
 
-ln -s $dotfiles_dir/vim/init.vim $HOME/.vim/init.vim
-ln -s $HOME/.config/nvim $HOME/.vim
+# ln -s $dotfiles_dir/vim/init.vim $HOME/.vim/init.vim
+ln -s $dotfiles_dir/vim/init.vim $HOME/.vimrc
 
 ln -s $dotfiles_dir/hammerspoon/ $HOME/.hammerspoon
 
@@ -94,5 +94,5 @@ fi
 sed -e "s/GIT_CREDENTIAL_HELPER/$GIT_CREDENTIAL/g" gitconfig.local.example >> gitconfig
 
 # Install vim plugins
-vim -Es -u $HOME/.vim/init.vim -c "PlugInstall | qa"
+#vim -Es -u $HOME/.vim/init.vim -c "PlugInstall | qa"
 
