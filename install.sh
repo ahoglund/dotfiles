@@ -6,6 +6,8 @@ set -x
 
 dotfiles_dir=$(pwd)
 
+ln -s $HOME/bin $dotfiles_dir/bin
+
 mkdir -p ~/.vim/autoload ~/.vim/bundle ~/.config/fish ~/.config/alacritty ~/.config/nvim;
 
 if [ "$(uname -s)" == "Darwin" ]; then
