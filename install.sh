@@ -23,13 +23,10 @@ fi
 
 #install neovim
 if [ "$(uname -s)" == "Linux" ]; then
-  apt-get install -y libfuse2
+  sudo apt-get install -y libfuse2
   curl -L -o $HOME/bin/nvim https://github.com/neovim/neovim/releases/download/v0.5.0/nvim.appimage
   chmod a+x $HOME/bin/nvim
 fi
-
-# Install vim plugins
-vim -Es -u $HOME/.vimrc -c "PlugInstall | qa"
 
 # Remove the oh-my's
 rm -rf $HOME/.oh-my-zsh
@@ -68,8 +65,8 @@ ln -s $HOME/.config/nvim $HOME/.vim
 ln -s $dotfiles_dir/hammerspoon/ $HOME/.hammerspoon
 
 # I'd like to use fish, please
-apt-get install -y fish
-chsh -s /usr/bin/fish
+sudo apt-get install -y fish
+sudo chsh -s /usr/bin/fish
 
 # Indexing Ruby std-lib
 gem install gem-ctags
@@ -80,6 +77,10 @@ if ! [ -d $HOME/.rbenv/plugins/rbenv-ctags ]; then
     $HOME/.rbenv/plugins/rbenv-ctags
   rbenv ctags
 fi
+
+# Install vim plugins
+vim -Es -u $HOME/.vim/init.vim -c "PlugInstall | qa"
+
 
 # Setup GnuPG
 mkdir -p $HOME/.gnupg
