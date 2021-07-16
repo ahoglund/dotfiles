@@ -1,5 +1,0 @@
-[user]
-        name = Andrew Hoglund
-        email = andrew@andrewhoglund.com
-[credential]
-        helper = osxkeychain

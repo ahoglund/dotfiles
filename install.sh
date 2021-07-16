@@ -13,33 +13,50 @@ fi
 # Setup fzf
 if [ "$(uname -s)" == "Darwin" ]; then
   $(brew --prefix)/opt/fzf/install
+else
+  curl -L https://github.com/junegunn/fzf/releases/download/0.27.2/fzf-0.27.2-linux_amd64.tar.gz | tar xzC $HOME/bin
+fi
+
+#install neovim
+if [ "$(uname -s)" == "Linux" ]; then
+  apt-get install -y libfuse2
+  curl -L -o $HOME/bin/nvim https://github.com/neovim/neovim/releases/download/v0.5.0/nvim.appimage
+  chmod a+x $HOME/bin/nvim
 fi
 
 mkdir -p ~/.vim/autoload ~/.vim/bundle ~/.config/fish ~/.config/alacritty ~/.config/nvim;
 
-# Install oh-my-zsh
-if ! [ -d ~/.oh-my-zsh ]; then
-  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-fi
+# Remove the oh-my's
+rm -rf ~/.oh-my-zsh
+rm -rf ~/.oh-my-bash
 
 # A place for private configs
 touch ~/.config/fish/private.fish
 touch ~/.bash_private
 
-ln -s $(pwd)/fish/functions/ ~/.config/fish/functions/
-ln -s $(pwd)/fish/config.fish ~/.config/fish/config.fish
-ln -s $(pwd)/tmux.conf ~/.tmux.conf
-ln -s $(pwd)/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
-ln -s $(pwd)/gitconfig ~/.gitconfig
-ln -s $(pwd)/gemrc ~/.gemrc
-ln -s $(pwd)/bash_profile ~/.bash_profile
-ln -s $(pwd)/zshrc ~/.zshrc
-ln -s $(pwd)/git_template ~/.git_template
+ln -s $dotfiles_dir/fish/functions/ ~/.config/fish/functions/
+ln -s $dotfiles_dir/fish/config.fish ~/.config/fish/config.fish
 
-ln -s $(pwd)/vim/init.vim ~/.vim/init.vim
+rm -f $HOME/.tmux.conf
+ln -s $dotfiles_dir/tmux.conf ~/.tmux.conf
+ln -s $dotfiles_dir/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
+
+mv $HOME/.gitconfig $HOME/.gitconfig.private
+
+ln -s $dotfiles_dir/gitconfig ~/.gitconfig
+ln -s $dotfiles_dir/gemrc ~/.gemrc
+ln -s $dotfiles_dir/bash_profile ~/.bash_profile
+ln -s $dotfiles_dir/zshrc ~/.zshrc
+ln -s $dotfiles_dir/git_template ~/.git_template
+
+ln -s $dotfiles_dir/vim/init.vim ~/.vim/init.vim
 ln -s ~/.config/nvim ~/.vim
 
-ln -s $(pwd)/hammerspoon/ ~/.hammerspoon
+ln -s $dotfiles_dir/hammerspoon/ ~/.hammerspoon
+
+# I'd like to use fish, please
+apt-get install -y fish
+chsh -s /usr/bin/fish
 
 # Indexing Ruby std-lib
 gem install gem-ctags
@@ -56,5 +73,12 @@ mkdir -p ~/.gnupg
 cd ~/.gnupg && ln -sf $dotfiles_dir/gpg-agent.conf gpg-agent.conf
 
 cd $dotfiles_dir
+# Setup gitconfig
+if [ "$(uname -s)" == "Darwin" ]
+then
+  GIT_CREDENTIAL='osxkeychain'
+else
+  GIT_CREDENTIAL='cache'
+fi
 
-./setup-gitconfig.sh $dotfiles_dir
+sed -e "s/GIT_CREDENTIAL_HELPER/$GIT_CREDENTIAL/g" gitconfig.local.example > gitconfig
