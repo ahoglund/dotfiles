@@ -29,8 +29,8 @@ if [ "$(uname -s)" == "Linux" ]; then
 fi
 
 # Remove the oh-my's
-rm -rf $HOME/.oh-my-zsh
-#rm -rf $HOME/.oh-my-bash
+#rm -rf $HOME/.oh-my-zsh
+rm -rf $HOME/.oh-my-bash
 
 # A place for private configs
 #touch $HOME/.config/fish/private.fish
