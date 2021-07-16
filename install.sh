@@ -6,7 +6,7 @@ set -x
 
 dotfiles_dir=$(pwd)
 
-ln -s $HOME/bin $dotfiles_dir/bin
+ln -s $dotfiles_dir/bin $HOME/bin
 
 mkdir -p $HOME/.vim/autoload $HOME/.vim/bundle $HOME/.config/fish $HOME/.config/alacritty $HOME/.config/nvim;
 
