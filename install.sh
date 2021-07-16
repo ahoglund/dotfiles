@@ -78,9 +78,6 @@ if ! [ -d $HOME/.rbenv/plugins/rbenv-ctags ]; then
   rbenv ctags
 fi
 
-# Install vim plugins
-vim -Es -u $HOME/.vim/init.vim -c "PlugInstall | qa"
-
 # Setup GnuPG
 mkdir -p $HOME/.gnupg
 cd $HOME/.gnupg && ln -sf $dotfiles_dir/gpg-agent.conf gpg-agent.conf
@@ -95,3 +92,7 @@ else
 fi
 
 sed -e "s/GIT_CREDENTIAL_HELPER/$GIT_CREDENTIAL/g" gitconfig.local.example > gitconfig
+
+# Install vim plugins
+vim -Es -u $HOME/.vim/init.vim -c "PlugInstall | qa"
+
