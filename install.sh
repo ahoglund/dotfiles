@@ -4,6 +4,8 @@ exec > >(tee -i $HOME/creation.log)
 exec 2>&1
 set -x
 
+dotfiles_dir=$(pwd)
+
 if [ "$(uname -s)" == "Darwin" ]; then
   brew bundle
 fi
@@ -27,7 +29,6 @@ touch ~/.bash_private
 ln -s $(pwd)/fish/functions/ ~/.config/fish/functions/
 ln -s $(pwd)/fish/config.fish ~/.config/fish/config.fish
 ln -s $(pwd)/tmux.conf ~/.tmux.conf
-ln -s $(pwd)/start_tmux.sh ~/start_tmux.sh
 ln -s $(pwd)/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
 ln -s $(pwd)/gitconfig ~/.gitconfig
 ln -s $(pwd)/gemrc ~/.gemrc
@@ -39,8 +40,6 @@ ln -s $(pwd)/vim/init.vim ~/.vim/init.vim
 ln -s ~/.config/nvim ~/.vim
 
 ln -s $(pwd)/hammerspoon/ ~/.hammerspoon
-
- ln -sf $(pwd)/bin ~/bin
 
 # Indexing Ruby std-lib
 gem install gem-ctags
@@ -54,6 +53,8 @@ fi
 
 # Setup GnuPG
 mkdir -p ~/.gnupg
-cd ~/.gnupg && ln -sf $HOME/dotfiles/gpg-agent.conf gpg-agent.conf
+cd ~/.gnupg && ln -sf $dotfiles_dir/gpg-agent.conf gpg-agent.conf
 
-./setup-gitconfig.sh
+cd $dotfiles_dir
+
+./setup-gitconfig.sh $dotfiles_dir

@@ -1,25 +1,25 @@
 #!/bin/bash
 
+dotfiles_dir=$1
 setup_gitconfig () {
-  cd ~/dotfiles
+  if [ "$dotfiles_dir" == ""];
+  then
+    dotfiles_dir=$(pwd)
+  fi
+
   if ! [ -f gitconfig.local ]
   then
-    echo 'setup gitconfig'
-
-    git_credential='cache'
     if [ "$(uname -s)" == "Darwin" ]
     then
-      git_credential='osxkeychain'
+      GIT_CREDENTIAL='osxkeychain'
+    else
+      GIT_CREDENTIAL='cache'
     fi
 
-    echo ' - What is your github author name?'
-    read -e git_authorname
-    echo ' - What is your github author email?'
-    read -e git_authoremail
+    sed -e "s/AUTHORNAME/$GIT_AUTHOR_NAME/g" -e "s/AUTHOREMAIL/$GIT_AUTHOR_EMAIL/g" -e "s/GIT_CREDENTIAL_HELPER/$GIT_CREDENTIAL/g" gitconfig.local.example > gitconfig.local
 
-    sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" gitconfig.local.example > gitconfig.local
-
-    ln -s $(pwd)/gitconfig.local ~/.gitconfig.local
+    cat gitconfig.local >> gitconfig
+    rm gitconfig.local
   fi
 }
 
