@@ -91,7 +91,7 @@ else
   GIT_CREDENTIAL='cache'
 fi
 
-sed -e "s/GIT_CREDENTIAL_HELPER/$GIT_CREDENTIAL/g" gitconfig.local.example > gitconfig
+sed -e "s/GIT_CREDENTIAL_HELPER/$GIT_CREDENTIAL/g" gitconfig.local.example >> gitconfig
 
 # Install vim plugins
 vim -Es -u $HOME/.vim/init.vim -c "PlugInstall | qa"
