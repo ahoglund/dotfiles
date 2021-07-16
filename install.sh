@@ -49,12 +49,17 @@ ln -s $dotfiles_dir/tmux.conf $HOME/.tmux.conf
 ln -s $dotfiles_dir/alacritty/alacritty.yml $HOME/.config/alacritty/alacritty.yml
 
 mv $HOME/.gitconfig $HOME/.gitconfig.private
-
 ln -s $dotfiles_dir/gitconfig $HOME/.gitconfig
 
+rm -f $HOME/.gemrc
 ln -s $dotfiles_dir/gemrc $HOME/.gemrc
+
+rm -f $HOME/.bash_profile
 ln -s $dotfiles_dir/bash_profile $HOME/.bash_profile
+
+rm -f $HOME/.zshrc
 ln -s $dotfiles_dir/zshrc $HOME/.zshrc
+
 ln -s $dotfiles_dir/git_template $HOME/.git_template
 
 ln -s $dotfiles_dir/vim/init.vim $HOME/.vim/init.vim
