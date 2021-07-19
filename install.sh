@@ -29,7 +29,7 @@ if [ "$(uname -s)" == "Linux" ]; then
 fi
 
 # Remove the oh-my's
-#rm -rf $HOME/.oh-my-zsh
+rm -rf $HOME/.oh-my-zsh
 rm -rf $HOME/.oh-my-bash
 
 # A place for private configs
@@ -51,8 +51,10 @@ ln -s $dotfiles_dir/gitconfig $HOME/.gitconfig
 rm -f $HOME/.gemrc
 ln -s $dotfiles_dir/gemrc $HOME/.gemrc
 
-# rm -f $HOME/.bash_profile
-# ln -s $dotfiles_dir/bash_profile $HOME/.bash_profile
+rm -f $HOME/.bash_profile
+rm -f $HOME/.bashrc
+ln -s $dotfiles_dir/bash_profile $HOME/.bash_profile
+ln -s $dotfiles_dir/bashrc $HOME/.bashrc
 
 rm -f $HOME/.zshrc
 ln -s $dotfiles_dir/zshrc $HOME/.zshrc
