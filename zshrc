@@ -4,6 +4,8 @@ fi
 
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
+#eval "$(nodenv init -)"
+eval "$(rbenv init -)"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -64,8 +66,5 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 if type nvim > /dev/null 2>&1; then
   alias vim='nvim'
 fi
-
-#eval "$(nodenv init -)"
-eval "$(rbenv init -)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

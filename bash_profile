@@ -8,9 +8,6 @@ if [ -f ~/.bash_private ]; then
   source ~/.bash_private
 fi
 
-## setup git email ##
-git config --local user.email "$GIT_EMAIL"
-
 ## env preferences ##
 PATH=$PATH:$HOME/bin:/Applications/Xcode.app/Contents/Applications/Application\ Loader.app/Contents/itms/bin
 export CLICOLOR=1
@@ -82,8 +79,6 @@ fi
 if [ -f ~/.git-prompt.sh ]; then
   source ~/.git-prompt.sh
 fi
-
-PS1="\[$BLUE\]\u\[$YELLOW\]\[$YELLOW\]\w\[\033[m\]\[$MAGENTA\]\$(__git_ps1)\[$WHITE\]\$ "
 
 export PATH="$HOME/.cargo/bin:$PATH"
 
