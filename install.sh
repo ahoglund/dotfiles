@@ -23,13 +23,13 @@ fi
 
 #install neovim and ctags
 if [ "$(uname -s)" == "Linux" ]; then
-  sudo apt-get install -y fuse libfuse2 ctags hub tmux
+  sudo apt-get install -y fuse ctags hub tmux
   curl -L -o $HOME/bin/nvim https://github.com/neovim/neovim/releases/download/v0.5.0/nvim.appimage
   chmod a+x $HOME/bin/nvim
 fi
 
 # Remove the oh-my's
-rm -rf $HOME/.oh-my-zsh
+#rm -rf $HOME/.oh-my-zsh
 rm -rf $HOME/.oh-my-bash
 
 # A place for private configs
@@ -53,8 +53,8 @@ ln -s $dotfiles_dir/gemrc $HOME/.gemrc
 
 rm -f $HOME/.bash_profile
 rm -f $HOME/.bashrc
-ln -s $dotfiles_dir/bash_profile $HOME/.bash_profile
-ln -s $dotfiles_dir/bashrc $HOME/.bashrc
+# ln -s $dotfiles_dir/bash_profile $HOME/.bash_profile
+# ln -s $dotfiles_dir/bashrc $HOME/.bashrc
 
 rm -f $HOME/.zshrc
 ln -s $dotfiles_dir/zshrc $HOME/.zshrc
@@ -69,6 +69,7 @@ ln -s $dotfiles_dir/hammerspoon/ $HOME/.hammerspoon
 # I'd like to use fish, please
 # sudo apt-get install -y fish
 # sudo chsh -s /usr/bin/fish
+sudo chsh -s /bin/zsh
 
 # Indexing Ruby std-lib
 gem install gem-ctags
@@ -96,5 +97,5 @@ fi
 sed -e "s/GIT_CREDENTIAL_HELPER/$GIT_CREDENTIAL/g" gitconfig.local.example >> gitconfig
 
 # Install vim plugins
-#vim -Es -u $HOME/.vim/init.vim -c "PlugInstall | qa"
+nvim +'PlugInstall --sync' +qa
 
