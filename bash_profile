@@ -9,12 +9,15 @@ if [ -f ~/.bash_private ]; then
 fi
 
 ## env preferences ##
-PATH=$PATH:$HOME/bin:/Applications/Xcode.app/Contents/Applications/Application\ Loader.app/Contents/itms/bin
+export PATH=$PATH:$HOME/bin:/Applications/Xcode.app/Contents/Applications/Application\ Loader.app/Contents/itms/bin
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH=$GOBIN:$PATH
+export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+export PATH="$HOME/.rbenv/bin:$PATH"
 export CLICOLOR=1
 export GREP_OPTIONS='--color=auto'
 export GOPATH=$HOME/src/go
 export GOBIN=$GOPATH/bin
-PATH=$GOBIN:$PATH
 export GO111MODULE=auto
 export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/opt/openssl/lib/
 
@@ -59,13 +62,11 @@ alias dc="docker-compose"
 alias agl="ag -l"
 
 ## activate bash completion ##
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  source $(brew --prefix)/etc/bash_completion
+if [ "$(uname -s)" == "Darwin" ]; then
+  if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    source $(brew --prefix)/etc/bash_completion
+  fi
 fi
-
-export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
 
 # git branch in prompt
 parse_git_branch() {
@@ -82,4 +83,4 @@ fi
 
 export PATH="$HOME/.cargo/bin:$PATH"
 
-eval "$(nodenv init -)"
+eval "$(rbenv init -)"

@@ -23,7 +23,7 @@ fi
 
 #install neovim and ctags
 if [ "$(uname -s)" == "Linux" ]; then
-  sudo apt-get install -y fuse ctags hub tmux ripgrep npm
+  sudo apt-get install -y fuse ctags hub tmux ripgrep npm rbenv
   curl -L -o $HOME/bin/nvim https://github.com/neovim/neovim/releases/download/v0.5.0/nvim.appimage
   chmod a+x $HOME/bin/nvim
 fi
@@ -63,6 +63,7 @@ ln -s $dotfiles_dir/zshrc $HOME/.zshrc
 ln -s $dotfiles_dir/git_template $HOME/.git_template
 
 ln -s $dotfiles_dir/vim/init.vim $HOME/.config/nvim/init.vim
+ln -s $dotfiles_dir/vim/autoload/plug.vim $HOME/.vim/autoload/plug.vim
 
 ln -s $dotfiles_dir/hammerspoon/ $HOME/.hammerspoon
 

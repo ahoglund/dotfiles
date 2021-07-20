@@ -54,6 +54,5 @@ fish_add_path /usr/local/opt/heroku-node/bin
 fish_add_path -aP $HOME/bin
 
 status --is-interactive; and source (rbenv init -|psub)
-status --is-interactive; and source (nodenv init -|psub)
 
 source ~/.config/fish/private.fish
