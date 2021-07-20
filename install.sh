@@ -8,7 +8,7 @@ dotfiles_dir=$(pwd)
 
 ln -s $dotfiles_dir/bin $HOME/bin
 
-mkdir -p $HOME/.vim/autoload $HOME/.vim/bundle $HOME/.config/fish $HOME/.config/alacritty $HOME/.config/nvim;
+mkdir -p $HOME/.config/fish $HOME/.config/alacritty;
 
 if [ "$(uname -s)" == "Darwin" ]; then
   brew bundle
@@ -62,8 +62,7 @@ ln -s $dotfiles_dir/zshrc $HOME/.zshrc
 
 ln -s $dotfiles_dir/git_template $HOME/.git_template
 
-ln -s $dotfiles_dir/vim/init.vim $HOME/.config/nvim/init.vim
-ln -s $dotfiles_dir/vim/autoload/plug.vim $HOME/.vim/autoload/plug.vim
+ln -s $dotfiles_dir/nvim $HOME/.config/nvim
 
 ln -s $dotfiles_dir/hammerspoon/ $HOME/.hammerspoon
 
