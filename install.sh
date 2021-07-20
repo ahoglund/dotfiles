@@ -4,6 +4,7 @@ exec > >(tee -i $HOME/creation.log)
 exec 2>&1
 set -x
 
+PATH="$HOME/bin:$PATH"
 dotfiles_dir=$(pwd)
 
 ln -s $dotfiles_dir/bin $HOME/bin
