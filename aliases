@@ -1,0 +1,31 @@
+alias git=hub
+alias cp='cp -iv'
+alias mv='mv -iv'
+alias mkdir='mkdir -pv'
+alias ll='ls -FGlhp'
+alias llh='ls -FGlAhp'
+alias ..='cd ../'
+alias ...='cd ../../'
+alias .3='cd ../../../'
+alias .4='cd ../../../../'
+alias .5='cd ../../../../../'
+alias .6='cd ../../../../../../'
+alias cssh='i2cssh'
+alias sed='gsed'
+alias rspec="rspec -fd"
+alias be="bundle exec"
+alias bi="bundle install"
+alias cleanup_merged_branches="git branch --merged master | grep -v master | xargs -n 1 git branch -d"
+alias sps="spring status"
+alias spr="spring rspec"
+alias sprc="spring rails console"
+alias sprs="spring rails server"
+alias sprr="spring rake routes"
+alias tmux="TERM=xterm-256color tmux"
+alias tmuxconf="vim ~/.tmux.conf"
+alias vimrc="vim ~/.vim/init.vim"
+alias zshrc="vim ~/.zshrc"
+alias git_conflicts='git diff --name-only --diff-filter=U'
+alias dc="docker-compose"
+alias agl="ag -l"
+
