@@ -96,4 +96,4 @@ fi
 sed -e "s/GIT_CREDENTIAL_HELPER/$GIT_CREDENTIAL/g" gitconfig.local.example >> gitconfig
 
 # Install vim plugins
-nvim +'PlugInstall --sync' +qa
+$HOME/bin/nvim +'PlugInstall --sync' +qa
