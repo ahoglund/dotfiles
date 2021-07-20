@@ -24,18 +24,16 @@ fi
 
 #install neovim and ctags
 if [ "$(uname -s)" == "Linux" ]; then
-  sudo apt-get install -y fuse libfuse2 ctags hub tmux ripgrep npm rbenv
+  sudo apt-get install -y fuse libfuse2 ctags hub tmux ripgrep npm rbenv fish
   curl -L -o $HOME/bin/nvim https://github.com/neovim/neovim/releases/download/v0.5.0/nvim.appimage
   chmod a+x $HOME/bin/nvim
 fi
 
 # A place for private configs
-#touch $HOME/.config/fish/private.fish
-touch $HOME/.bash_private
-touch $HOME/.zsh_private
+touch $HOME/.config/fish/private.fish
 
-#ln -s $dotfiles_dir/fish/functions $HOME/.config/fish/functions
-#ln -s $dotfiles_dir/fish/config.fish $HOME/.config/fish/config.fish
+ln -s $dotfiles_dir/fish/functions $HOME/.config/fish/functions
+ln -s $dotfiles_dir/fish/config.fish $HOME/.config/fish/config.fish
 
 rm -f $HOME/.tmux.conf
 ln -s $dotfiles_dir/tmux.conf $HOME/.tmux.conf
@@ -53,17 +51,11 @@ ln -s $dotfiles_dir/gitconfig $HOME/.gitconfig
 rm -f $HOME/.gemrc
 ln -s $dotfiles_dir/gemrc $HOME/.gemrc
 
+rm -rf .oh-my-zsh
+rm -rf .oh-my-bash
 rm -f $HOME/.bash_profile
 rm -f $HOME/.bashrc
-ln -s $dotfiles_dir/bash_profile $HOME/.bash_profile
-ln -s $dotfiles_dir/bashrc $HOME/.bashrc
-
-cp $dotfiles_dir/paths $HOME/.paths
-cp $dotfiles_dir/paths $HOME/.aliases
-cp $dotfiles_dir/paths $HOME/.flags
-
 rm -f $HOME/.zshrc
-ln -s $dotfiles_dir/zshrc $HOME/.zshrc
 
 ln -s $dotfiles_dir/git_template $HOME/.git_template
 
@@ -72,8 +64,7 @@ ln -s $dotfiles_dir/nvim $HOME/.config/nvim
 ln -s $dotfiles_dir/hammerspoon/ $HOME/.hammerspoon
 
 # Use fish
-# sudo apt-get install -y fish
-# sudo chsh -s /usr/bin/fish
+sudo chsh -s /usr/bin/fish
 
 # Indexing Ruby std-lib
 gem install gem-ctags

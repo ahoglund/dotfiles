@@ -1,9 +1,0 @@
-export CLICOLOR=1
-export GOPATH=$HOME/src/go
-export GOBIN=$GOPATH/bin
-export GO111MODULE=auto
-export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/opt/openssl/lib/
-
-# remember history between IEx sessions
-export ERL_AFLAGS="-kernel shell_history enabled"
-
