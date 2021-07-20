@@ -11,8 +11,6 @@
   evolve = "! f() { git checkout $1 && git pull;}; f"
 [init]
   templatedir = ~/.git_template
-[url "git@github.com:"]
-  insteadOf = https://github.com/
 [gpg]
   program = gpg2
 [fetch]
