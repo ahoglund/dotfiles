@@ -56,6 +56,9 @@ rm -f $HOME/.bash_profile
 rm -f $HOME/.bashrc
 ln -s $dotfiles_dir/bash_profile $HOME/.bash_profile
 ln -s $dotfiles_dir/bashrc $HOME/.bashrc
+ln -s $dotfiles_dir/paths $HOME/.paths
+ln -s $dotfiles_dir/paths $HOME/.aliases
+ln -s $dotfiles_dir/paths $HOME/.flags
 
 rm -f $HOME/.zshrc
 ln -s $dotfiles_dir/zshrc $HOME/.zshrc

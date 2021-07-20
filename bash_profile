@@ -3,9 +3,9 @@
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 [ -f ~/.git-prompt.sh ] && source ~/.git-prompt.sh
 
-source ./paths
-source ./flags
-source ./aliases
+source ./.paths
+source ./.flags
+source ./.aliases
 
 ## activate bash completion ##
 if [ "$(uname -s)" == "Darwin" ]; then

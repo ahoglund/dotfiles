@@ -13,9 +13,9 @@ plugins=(git rails ruby)
 
 source $ZSH/oh-my-zsh.sh
 
-source ./paths
-source ./flags
-source ./aliases
+source ./.paths
+source ./.flags
+source ./.aliases
 
 if type nvim > /dev/null 2>&1; then
   alias vim='nvim'
