@@ -33,7 +33,6 @@ alias vim='nvim'
 # env
 set -x LIBRARY_PATH $LIBRARY_PATH /usr/local/opt/openssl/lib/
 set -x CLICOLOR 1
-set -x GREP_OPTIONS '--color=auto'
 set -x GOPATH $HOME/src/go
 set -x GOBIN $GOPATH/bin
 set -x GO111MODULE auto
