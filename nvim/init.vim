@@ -113,6 +113,7 @@ nmap <Leader>T :TestFile<CR>
 nmap <Leader>a :TestSuite<CR>
 nmap <Leader>l :TestLast<CR>
 nmap <Leader>g :TestVisit<CR>
+nnoremap <leader>y :call system('nc -U ~/.clipper.sock', @0)<CR>
 
 nmap <Leader>f /<C-R><C-W><CR>
 nnoremap <Leader>fr :%s/\<<C-r><C-w>\>/

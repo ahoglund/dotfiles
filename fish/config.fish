@@ -29,6 +29,7 @@ alias git_conflicts='git diff --name-only --diff-filter=U'
 alias dc="docker-compose"
 alias agl="ag -l"
 alias vim='nvim'
+alias clip="nc -U ~/.clipper.sock"
 
 # env
 set -x LIBRARY_PATH $LIBRARY_PATH /usr/local/opt/openssl/lib/
@@ -55,3 +56,5 @@ fish_add_path -aP $HOME/bin
 status --is-interactive; and source (rbenv init -|psub)
 
 source ~/.config/fish/private.fish
+
+# eval (ssh-agent -c)
