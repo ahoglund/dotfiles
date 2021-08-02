@@ -30,7 +30,7 @@ fi
 if [ "$(uname -s)" == "Linux" ]; then
   echo 'deb http://download.opensuse.org/repositories/shells:/fish:/release:/3/Debian_10/ /' | sudo tee /etc/apt/sources.list.d/shells:fish:release:3.list
   curl -fsSL https://download.opensuse.org/repositories/shells:fish:release:3/Debian_10/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_3.gpg > /dev/null
-  sudo apt update
+  sudo apt-get update
   sudo apt-get install -y software-properties-common
   sudo apt-add-repository -y ppa:fish-shell/release-3
   sudo apt-get install -y fuse libfuse2 ctags hub tmux ripgrep npm rbenv fish
@@ -56,6 +56,8 @@ ln -s $dotfiles_dir/gemrc $HOME/.gemrc
 ln -s $dotfiles_dir/git_template $HOME/.git_template
 ln -s $dotfiles_dir/nvim $HOME/.config/nvim
 ln -s $dotfiles_dir/hammerspoon/ $HOME/.hammerspoon
+
+ln -s $dotfiles_dir/clipper.json/ $HOME/.clipper.json
 
 # Use fish
 sudo chsh -s /usr/bin/fish

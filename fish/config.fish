@@ -13,7 +13,6 @@ alias .4='cd ../../../../'
 alias .5='cd ../../../../../'
 alias .6='cd ../../../../../../'
 alias cssh='i2cssh'
-alias sed='gsed'
 alias rspec="rspec -fd"
 alias be="bundle exec"
 alias bi="bundle install"
