@@ -1,0 +1,27 @@
+[credential]
+  helper = osxkeychain
+[push]
+  default = simple
+[alias]
+  st = status
+  df = diff
+  ci = commit
+  co = checkout
+  br = branch
+  pl = pull
+  ps = push
+  evolve = "! f() { git checkout $1 && git pull;}; f"
+[init]
+  templatedir = ~/.git_template
+[gpg]
+  program = gpg2
+[fetch]
+  prune = true
+[pull]
+  rebase = false
+[commit]
+  gpgsign = true
+[user]
+  signingkey = 513674C41DD2CAB3
+[core]
+  editor = vim
