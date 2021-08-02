@@ -85,6 +85,8 @@ else
   GIT_CREDENTIAL='cache'
 fi
 
+rm -f $HOME/.gitconfig
+
 sed -i -e "s/GIT_CREDENTIAL_HELPER/$GIT_CREDENTIAL/g" $dotfiles_dir/gitconfig.example
 cp -p $dotfiles_dir/gitconfig.example $dotfiles_dir/gitconfig
 
