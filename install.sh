@@ -7,6 +7,9 @@ set -x
 PATH="$HOME/bin:$PATH"
 dotfiles_dir=$(pwd)
 
+os=$(uname -s)
+flavor=$(egrep '^NAME=' /etc/os-release | sed 's/"//g' | cut -d= -f2)
+
 if [ "$1" == "reset" ]; then
   $dotfiles_dir/reset.sh
 fi
@@ -15,21 +18,26 @@ ln -s $dotfiles_dir/bin $HOME/bin
 
 mkdir -p $HOME/.config/fish $HOME/.config/alacritty;
 
-if [ "$(uname -s)" == "Darwin" ]; then
+if [ "$os" == "Darwin" ]; then
   brew bundle
 fi
 
 # Setup fzf
-if [ "$(uname -s)" == "Darwin" ]; then
+if [ "$os" == "Darwin" ]; then
   $(brew --prefix)/opt/fzf/install
 else
   curl -L https://github.com/junegunn/fzf/releases/download/0.27.2/fzf-0.27.2-linux_amd64.tar.gz | tar xzC $HOME/bin
 fi
 
 #install neovim and ctags
-if [ "$(uname -s)" == "Linux" ]; then
-  echo 'deb http://download.opensuse.org/repositories/shells:/fish:/release:/3/Debian_10/ /' | sudo tee /etc/apt/sources.list.d/shells:fish:release:3.list
-  curl -fsSL https://download.opensuse.org/repositories/shells:fish:release:3/Debian_10/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_3.gpg > /dev/null
+if [ "$os" == "Linux" ]; then
+  if [ "$flavor" == "Ubuntu" ]; then
+    echo "gwell"
+  else
+    echo 'deb http://download.opensuse.org/repositories/shells:/fish:/release:/3/Debian_10/ /' | sudo tee /etc/apt/sources.list.d/shells:fish:release:3.list
+    curl -fsSL https://download.opensuse.org/repositories/shells:fish:release:3/Debian_10/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_3.gpg > /dev/null
+  fi
+
   sudo apt-get update
   sudo apt-get install -y software-properties-common
   sudo apt-add-repository -y ppa:fish-shell/release-3
@@ -60,7 +68,7 @@ ln -s $dotfiles_dir/hammerspoon/ $HOME/.hammerspoon
 ln -s $dotfiles_dir/clipper.json/ $HOME/.clipper.json
 
 # Use fish
-sudo chsh -s /usr/bin/fish
+sudo chsh -s $(which fish) $(whoami)
 
 # Indexing Ruby std-lib
 gem install gem-ctags
@@ -78,7 +86,7 @@ cd $HOME/.gnupg && ln -sf $dotfiles_dir/gpg-agent.conf gpg-agent.conf
 
 cd $dotfiles_dir
 # Setup gitconfig
-if [ "$(uname -s)" == "Darwin" ]
+if [ "$os" == "Darwin" ]
 then
   GIT_CREDENTIAL='osxkeychain'
 else
