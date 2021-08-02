@@ -85,9 +85,8 @@ else
   GIT_CREDENTIAL='cache'
 fi
 
-sed -i -e "s/GIT_CREDENTIAL_HELPER/$GIT_CREDENTIAL/g" gitconfig.example
-
-cp -p gitconfig.example gitconfig
+sed -i -e "s/GIT_CREDENTIAL_HELPER/$GIT_CREDENTIAL/g" $dotfiles_dir/gitconfig.example
+cp -p $dotfiles_dir/gitconfig.example $dotfiles_dir/gitconfig
 
 if [ "$CODESPACES" == "" ]; then
  echo '[url "git@github.com:"]' >> gitconfig
