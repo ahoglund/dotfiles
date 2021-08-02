@@ -7,6 +7,10 @@ set -x
 PATH="$HOME/bin:$PATH"
 dotfiles_dir=$(pwd)
 
+if [ "$1" == "reset" ]; then
+  $dotfiles_dir/reset.sh
+fi
+
 ln -s $dotfiles_dir/bin $HOME/bin
 
 mkdir -p $HOME/.config/fish $HOME/.config/alacritty;
@@ -45,27 +49,12 @@ ln -s $dotfiles_dir/tmux.conf $HOME/.tmux.conf
 
 ln -s $dotfiles_dir/alacritty/alacritty.yml $HOME/.config/alacritty/alacritty.yml
 
-if [ "$CODESPACES" == "" ]; then
- echo '[url "git@github.com:"]' >> gitconfig
- echo '  insteadOf = https://github.com/' >> gitconfig
-fi
-
-mv $HOME/.gitconfig $HOME/.gitconfig.private
-ln -s $dotfiles_dir/gitconfig $HOME/.gitconfig
 
 rm -f $HOME/.gemrc
 ln -s $dotfiles_dir/gemrc $HOME/.gemrc
 
-rm -rf .oh-my-zsh
-rm -rf .oh-my-bash
-rm -f $HOME/.bash_profile
-rm -f $HOME/.bashrc
-rm -f $HOME/.zshrc
-
 ln -s $dotfiles_dir/git_template $HOME/.git_template
-
 ln -s $dotfiles_dir/nvim $HOME/.config/nvim
-
 ln -s $dotfiles_dir/hammerspoon/ $HOME/.hammerspoon
 
 # Use fish
@@ -94,7 +83,16 @@ else
   GIT_CREDENTIAL='cache'
 fi
 
-sed -e "s/GIT_CREDENTIAL_HELPER/$GIT_CREDENTIAL/g" gitconfig.local.example >> gitconfig
+sed -i -e "s/GIT_CREDENTIAL_HELPER/$GIT_CREDENTIAL/g" gitconfig.example
+
+cp -p gitconfig.example gitconfig
+
+if [ "$CODESPACES" == "" ]; then
+ echo '[url "git@github.com:"]' >> gitconfig
+ echo '  insteadOf = https://github.com/' >> gitconfig
+fi
+
+ln -s $dotfiles_dir/gitconfig $HOME/.gitconfig
 
 # Install vim plugins
-$HOME/bin/nvim +'PlugInstall --sync' +qa
+nvim +'PlugInstall --sync' +qa
