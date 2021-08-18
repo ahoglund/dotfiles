@@ -1,5 +1,5 @@
 [credential]
-  helper = osxkeychain
+  helper = GIT_CREDENTIAL_HELPER
 [push]
   default = simple
 [alias]
