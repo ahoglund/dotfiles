@@ -32,14 +32,13 @@ fi
 #install neovim and ctags
 if [ "$os" == "Linux" ]; then
   if [ "$flavor" == "Debian GNU/Linux" ]; then
-   # echo 'deb http://download.opensuse.org/repositories/shells:/fish:/release:/3/Debian_11/ /' | sudo tee /etc/apt/sources.list.d/shells:fish:release:3.list
-   # curl -fsSL https://download.opensuse.org/repositories/shells:fish:release:3/Debian_11/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_3.gpg > /dev/null
+    echo 'deb http://download.opensuse.org/repositories/shells:/fish:/release:/3/Debian_11/ /' | sudo tee /etc/apt/sources.list.d/shells:fish:release:3.list
+    curl -fsSL https://download.opensuse.org/repositories/shells:fish:release:3/Debian_11/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_3.gpg > /dev/null
   fi
 
-  sudo apt-get update
-  sudo apt-get install -y software-properties-common
-  #sudo apt-add-repository -y ppa:fish-shell/release-3
-  sudo apt-get install -y fuse libfuse2 ctags hub tmux ripgrep npm rbenv fish
+  sudo apt update
+  sudo apt install -y software-properties-common
+  sudo apt install -y fuse libfuse2 ctags hub tmux ripgrep npm rbenv fish
   curl -L -o $HOME/bin/nvim https://github.com/neovim/neovim/releases/download/v0.5.0/nvim.appimage
   chmod a+x $HOME/bin/nvim
 fi
