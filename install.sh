@@ -39,7 +39,8 @@ if [ "$os" == "Linux" ]; then
   sudo apt-get upgrade -y
   sudo apt-get update -y
   sudo apt-get install -y software-properties-common
-  sudo apt-get install -y fuse libfuse2 ctags hub tmux ripgrep npm rbenv fish
+  sudo apt-get install -y fuse libfuse2 tmux ripgrep npm rbenv fish
+  sudo apt-get install-y exuberant-ctags hub
   curl -L -o $HOME/bin/nvim https://github.com/neovim/neovim/releases/download/v0.5.0/nvim.appimage
   chmod a+x $HOME/bin/nvim
 fi
