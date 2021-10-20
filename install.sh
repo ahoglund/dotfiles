@@ -36,6 +36,7 @@ if [ "$os" == "Linux" ]; then
     curl -fsSL https://download.opensuse.org/repositories/shells:fish:release:3/Debian_11/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_3.gpg > /dev/null
   fi
 
+  sudo apt-get upgrade -y
   sudo apt-get update -y
   sudo apt-get install -y software-properties-common
   sudo apt-get install -y fuse libfuse2 ctags hub tmux ripgrep npm rbenv fish
