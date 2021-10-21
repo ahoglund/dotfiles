@@ -36,6 +36,9 @@ if [ "$os" == "Linux" ]; then
     curl -fsSL https://download.opensuse.org/repositories/shells:fish:release:3/Debian_11/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_3.gpg > /dev/null
   fi
 
+  # for Ubuntu
+  sudo apt-add-repository ppa:fish-shell/release-3
+
   sudo apt-get upgrade -y
   sudo apt-get update -y
   sudo apt-get install -y software-properties-common
