@@ -69,6 +69,7 @@ ln -s $dotfiles_dir/alacritty/alacritty.yml $HOME/.config/alacritty/alacritty.ym
 
 rm -f $HOME/.gemrc
 ln -s $dotfiles_dir/gemrc $HOME/.gemrc
+ln -s $dotfiles_dir/ctags $HOME/.ctags
 
 ln -s $dotfiles_dir/git_template $HOME/.git_template
 ln -s $dotfiles_dir/nvim $HOME/.config/nvim
