@@ -58,9 +58,11 @@ if [ "$os" == "Linux" ]; then
   # Postgres
   sudo apt-get install postgresql postgresql-contrib
 
+
   curl -L -o $HOME/bin/nvim https://github.com/neovim/neovim/releases/download/v0.5.0/nvim.appimage
   chmod a+x $HOME/bin/nvim
 fi
+
 
 # A place for private configs
 touch $HOME/.config/fish/private.fish
@@ -70,6 +72,10 @@ ln -s $dotfiles_dir/fish/config.fish $HOME/.config/fish/config.fish
 
 rm -f $HOME/.tmux.conf
 ln -s $dotfiles_dir/tmux.conf $HOME/.tmux.conf
+
+# Default shell for tmux
+echo 'set -g default-command $(which fish)' >> $dotfiles_dir/tmux.conf
+echo 'set -g default-shell $(which fish)' >> $dotfiles_dir/tmux.conf
 
 ln -s $dotfiles_dir/alacritty/alacritty.yml $HOME/.config/alacritty/alacritty.yml
 
