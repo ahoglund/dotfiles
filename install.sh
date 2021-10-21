@@ -31,8 +31,13 @@ fi
 
 #install neovim and ctags
 if [ "$os" == "Linux" ]; then
+
+  wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+
   if [ "$flavor" == "Debian GNU/Linux" ]; then
+    wget https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb && sudo dpkg -i erlang-solutions_2.0_all.deb
     echo 'deb http://download.opensuse.org/repositories/shells:/fish:/release:/3/Debian_11/ /' | sudo tee /etc/apt/sources.list.d/shells:fish:release:3.list
+    echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list
     curl -fsSL https://download.opensuse.org/repositories/shells:fish:release:3/Debian_11/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_3.gpg > /dev/null
   fi
 
@@ -47,9 +52,11 @@ if [ "$os" == "Linux" ]; then
   sudo apt-get install -y exuberant-ctags hub
 
   # Elixir
-  wget https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb && sudo dpkg -i erlang-solutions_2.0_all.deb
   sudo apt-get install esl-erlang
   sudo apt-get install elixir
+
+  # Postgres
+  sudo apt-get install postgresql postgresql-contrib
 
   curl -L -o $HOME/bin/nvim https://github.com/neovim/neovim/releases/download/v0.5.0/nvim.appimage
   chmod a+x $HOME/bin/nvim
