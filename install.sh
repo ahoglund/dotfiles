@@ -41,9 +41,16 @@ if [ "$os" == "Linux" ]; then
 
   sudo apt-get upgrade -y
   sudo apt-get update -y
+
   sudo apt-get install -y software-properties-common
   sudo apt-get install -y fuse libfuse2 tmux ripgrep npm rbenv fish
   sudo apt-get install -y exuberant-ctags hub
+
+  # Elixir
+  wget https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb && sudo dpkg -i erlang-solutions_2.0_all.deb
+  sudo apt-get install esl-erlang
+  sudo apt-get install elixir
+
   curl -L -o $HOME/bin/nvim https://github.com/neovim/neovim/releases/download/v0.5.0/nvim.appimage
   chmod a+x $HOME/bin/nvim
 fi
