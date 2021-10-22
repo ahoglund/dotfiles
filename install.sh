@@ -59,7 +59,7 @@ if [ "$os" == "Linux" ]; then
   sudo apt-get install postgresql postgresql-contrib
 
 
-  curl -L -o $HOME/bin/nvim https://github.com/neovim/neovim/releases/download/v0.5.0/nvim.appimage
+  curl -L -o $HOME/bin/nvim https://github.com/neovim/neovim/releases/download/v0.5.1/nvim.appimage
   chmod a+x $HOME/bin/nvim
 fi
 
