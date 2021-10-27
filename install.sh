@@ -52,15 +52,19 @@ if [ "$os" == "Linux" ]; then
   sudo apt-get install -y exuberant-ctags hub
 
   # Elixir
-  sudo apt-get install esl-erlang
-  sudo apt-get install elixir
+  sudo apt-get install -y esl-erlang
+  sudo apt-get install -y elixir
 
   # Postgres
   sudo apt-get install postgresql postgresql-contrib
 
 
-  curl -L -o $HOME/bin/nvim https://github.com/neovim/neovim/releases/download/v0.5.1/nvim.appimage
-  chmod a+x $HOME/bin/nvim
+  # curl -L -o $HOME/bin/nvim https://github.com/neovim/neovim/releases/download/v0.5.1/nvim.appimage
+  # chmod a+x $HOME/bin/nvim
+  wget https://github.com/github/copilot.vim/releases/download/neovim-nightlies/appimage.zip
+  unzip appimage.zip
+  sudo chmod u+x nvim.appimage
+  sudo mv nvim.appimage $HOME/bin/nvim
 fi
 
 
