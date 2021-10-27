@@ -56,7 +56,7 @@ if [ "$os" == "Linux" ]; then
   sudo apt-get install -y elixir
 
   # Postgres
-  sudo apt-get install postgresql postgresql-contrib
+  sudo apt-get install -y postgresql postgresql-contrib
 
 
   # curl -L -o $HOME/bin/nvim https://github.com/neovim/neovim/releases/download/v0.5.1/nvim.appimage
