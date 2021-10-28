@@ -61,9 +61,9 @@ if [ "$os" == "Linux" ]; then
 
   # curl -L -o $HOME/bin/nvim https://github.com/neovim/neovim/releases/download/v0.5.1/nvim.appimage
   # chmod a+x $HOME/bin/nvim
-  wget https://github.com/github/copilot.vim/releases/download/neovim-nightlies/appimage.zip
-  unzip appimage.zip
-  sudo chmod u+x nvim.appimage
+  wget -L -o $HOME/appimage.zip https://github.com/github/copilot.vim/releases/download/neovim-nightlies/appimage.zip
+  unzip $HOME/appimage.zip
+  sudo chmod u+x $HOME/nvim.appimage
   sudo mv nvim.appimage $HOME/bin/nvim
 fi
 
