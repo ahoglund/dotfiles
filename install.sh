@@ -42,7 +42,7 @@ if [ "$os" == "Linux" ]; then
   fi
 
   # for Ubuntu
-  sudo apt-add-repository ppa:fish-shell/release-3
+  sudo apt-add-repository -y ppa:fish-shell/release-3
 
   sudo apt-get upgrade -y
   sudo apt-get update -y
