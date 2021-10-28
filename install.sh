@@ -78,8 +78,8 @@ rm -f $HOME/.tmux.conf
 ln -s $dotfiles_dir/tmux.conf $HOME/.tmux.conf
 
 # Default shell for tmux
-echo 'set -g default-command $(which fish)' >> $dotfiles_dir/tmux.conf
-echo 'set -g default-shell $(which fish)' >> $dotfiles_dir/tmux.conf
+echo "set -g default-command $(which fish)" >> $dotfiles_dir/tmux.conf
+echo "set -g default-shell $(which fish)" >> $dotfiles_dir/tmux.conf
 
 ln -s $dotfiles_dir/alacritty/alacritty.yml $HOME/.config/alacritty/alacritty.yml
 

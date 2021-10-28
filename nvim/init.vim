@@ -10,6 +10,7 @@ Plug 'godlygeek/tabular'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rails'
+Plug 'github/copilot.vim'
 " Plug 'jeffkreeftmeijer/neovim-sensible'
 " Add ends to certain blocks in various langs
 Plug 'tpope/vim-endwise'
