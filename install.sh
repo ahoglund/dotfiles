@@ -64,7 +64,7 @@ if [ "$os" == "Linux" ]; then
   wget -L -O $HOME/appimage.zip https://github.com/github/copilot.vim/releases/download/neovim-nightlies/appimage.zip
   unzip $HOME/appimage.zip
   sudo chmod u+x $HOME/nvim.appimage
-  sudo mv nvim.appimage $HOME/bin/nvim
+  sudo mv $HOME/nvim.appimage $HOME/bin/nvim
 fi
 
 
