@@ -7,6 +7,8 @@ set -x
 PATH="$HOME/bin:$PATH"
 dotfiles_dir=$(pwd)
 
+
+
 os=$(uname -s)
 flavor=$(egrep '^NAME=' /etc/os-release | sed 's/"//g' | cut -d= -f2)
 
@@ -20,47 +22,45 @@ mkdir -p $HOME/.config/fish $HOME/.config/alacritty;
 
 if [ "$os" == "Darwin" ]; then
   brew bundle
-fi
-
-# Setup fzf
-if [ "$os" == "Darwin" ]; then
   $(brew --prefix)/opt/fzf/install
 else
   curl -L https://github.com/junegunn/fzf/releases/download/0.27.2/fzf-0.27.2-linux_amd64.tar.gz | tar xzC $HOME/bin
 fi
 
-#install neovim and ctags
 if [ "$os" == "Linux" ]; then
-
-  wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
-
-  if [ "$flavor" == "Debian GNU/Linux" ]; then
-    wget https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb && sudo dpkg -i erlang-solutions_2.0_all.deb
-    echo 'deb http://download.opensuse.org/repositories/shells:/fish:/release:/3/Debian_11/ /' | sudo tee /etc/apt/sources.list.d/shells:fish:release:3.list
-    echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list
-    curl -fsSL https://download.opensuse.org/repositories/shells:fish:release:3/Debian_11/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_3.gpg > /dev/null
-  fi
-
-  # for Ubuntu
-  sudo apt-add-repository -y ppa:fish-shell/release-3
-
   sudo apt-get upgrade -y
   sudo apt-get update -y
 
+  # Erlang
+  # wget https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb
+  # sudo dpkg -i erlang-solutions_2.0_all.deb
+
+  if [ "$flavor" == "Debian GNU/Linux" ]; then
+    echo 'deb http://download.opensuse.org/repositories/shells:/fish:/release:/3/Debian_11/ /' | sudo tee /etc/apt/sources.list.d/shells:fish:release:3.list
+    curl -fsSL https://download.opensuse.org/repositories/shells:fish:release:3/Debian_11/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_3.gpg > /dev/null
+  fi
+
+  if [ "$flavor" == "Ubuntu" ]; then
+    # Fish
+    sudo apt-add-repository -y ppa:fish-shell/release-3
+  fi
+
+  # Postgres
+  # wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+  # sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+
+  sudo apt-get update -y
   sudo apt-get install -y software-properties-common
   sudo apt-get install -y fuse libfuse2 tmux ripgrep npm rbenv fish
   sudo apt-get install -y exuberant-ctags hub
 
   # Elixir
-  sudo apt-get install -y esl-erlang
-  sudo apt-get install -y elixir
+  # sudo apt-get install -y esl-erlang
+  # sudo apt-get install -y elixir
 
   # Postgres
-  sudo apt-get install -y postgresql postgresql-contrib
+  # sudo apt-get install -y postgresql postgresql-contrib
 
-
-  # curl -L -o $HOME/bin/nvim https://github.com/neovim/neovim/releases/download/v0.5.1/nvim.appimage
-  # chmod a+x $HOME/bin/nvim
   wget -L -O $HOME/appimage.zip https://github.com/github/copilot.vim/releases/download/neovim-nightlies/appimage.zip
   unzip $HOME/appimage.zip
   sudo chmod u+x $HOME/nvim.appimage
