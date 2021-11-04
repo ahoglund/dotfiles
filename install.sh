@@ -62,7 +62,7 @@ if [ "$os" == "Linux" ]; then
   # sudo apt-get install -y postgresql postgresql-contrib
 
   wget -L -O $HOME/appimage.zip https://github.com/github/copilot.vim/releases/download/neovim-nightlies/appimage.zip
-  unzip $HOME/appimage.zip
+  unzip $HOME/appimage.zip -d $HOME
   sudo chmod u+x $HOME/nvim.appimage
   sudo mv $HOME/nvim.appimage $HOME/bin/nvim
 fi
