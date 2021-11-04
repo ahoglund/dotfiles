@@ -28,7 +28,7 @@ else
 fi
 
 if [ "$os" == "Linux" ]; then
-  sudo apt-get upgrade -y
+  #sudo apt-get upgrade -y
   sudo apt-get update -y
 
   # Erlang
