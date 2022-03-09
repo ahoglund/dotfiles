@@ -10,7 +10,6 @@ dotfiles_dir=$(pwd)
 
 
 os=$(uname -s)
-flavor=$(egrep '^NAME=' /etc/os-release | sed 's/"//g' | cut -d= -f2)
 
 if [ "$1" == "reset" ]; then
   $dotfiles_dir/reset.sh
@@ -28,7 +27,7 @@ else
 fi
 
 if [ "$os" == "Linux" ]; then
-  #sudo apt-get upgrade -y
+  flavor=$(egrep '^NAME=' /etc/os-release | sed 's/"//g' | cut -d= -f2)
   sudo apt-get update -y
 
   # Erlang
@@ -43,6 +42,8 @@ if [ "$os" == "Linux" ]; then
   if [ "$flavor" == "Ubuntu" ]; then
     # Fish
     sudo apt-add-repository -y ppa:fish-shell/release-3
+    curl -fsSL https://deb.nodesource.com/setup_17.x | sudo -E bash -
+    sudo apt-get install -y nodejs
   fi
 
   # Postgres

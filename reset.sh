@@ -6,6 +6,7 @@ rm -rf $HOME/.oh-my-zsh
 rm -rf $HOME/.oh-my-bash
 rm -rf $HOME/.config
 rm -rf $HOME/.gnupg
+rm -rf $HOME/.fzf
 
 rm -f $HOME/.tmux.conf
 rm -f $HOME/.bash_profile
@@ -24,5 +25,4 @@ rm -f $HOME/.shell.pre-oh-my-zsh
 rm -f $HOME/.zshrc.pre-oh-my-zsh*
 rm -f $HOME/.bash_history
 rm -f $HOME/.bashrc
-rm -f $HOME/.fzf
 rm -f $HOME/.git_template

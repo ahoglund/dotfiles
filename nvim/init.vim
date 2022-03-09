@@ -45,7 +45,7 @@ Plug 'sheerun/vim-polyglot'
 " I actually have nvim 0.4.3 installed, but since native
 " macOS vim is not greater than 8 something i need to add this
 " to silence vim-go warnings:
-let g:go_version_warning = 0
+" let g:go_version_warning = 0
 
 call plug#end()
 
