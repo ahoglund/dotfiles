@@ -11,37 +11,64 @@ window:
   startup_mode: Maximized
   decorations: none
 colors:
-  # Default colors
+  name: Railscasts (dark)
+  author: Chris Kempson
   primary:
-    background: '0x181818'
-    foreground: '0xd8d8d8'
-
-  # Colors the cursor will use if `custom_cursor_colors` is true
+    background: "#2b2b2b"
+    foreground: "#e6e1dc"
   cursor:
-    text: '0x181818'
-    cursor: '0xd8d8d8'
-
-  # Normal colors
+    text: "#2b2b2b"
+    cursor: "#e6e1dc"
   normal:
-    black:   '0x181818'
-    red:     '0xab4642'
-    green:   '0xa1b56c'
-    yellow:  '0xf7ca88'
-    blue:    '0x7cafc2'
-    magenta: '0xba8baf'
-    cyan:    '0x86c1b9'
-    white:   '0xd8d8d8'
-
-  # Bright colors
+    black: "#2b2b2b"
+    red: "#da4939"
+    green: "#a5c261"
+    yellow: "#ffc66d"
+    blue: "#6d9cbe"
+    magenta: "#b6b3eb"
+    cyan: "#519f50"
+    white: "#e6e1dc"
   bright:
-    black:   '0x585858'
-    red:     '0xab4642'
-    green:   '0xa1b56c'
-    yellow:  '0xf7ca88'
-    blue:    '0x7cafc2'
-    magenta: '0xba8baf'
-    cyan:    '0x86c1b9'
-    white:   '0xf8f8f8'
+    black: "#5a647e"
+    red: "#da4939"
+    green: "#a5c261"
+    yellow: "#ffc66d"
+    blue: "#6d9cbe"
+    magenta: "#b6b3eb"
+    cyan: "#519f50"
+    white: "#f9f7f3"
+# colors:
+#   # Default colors
+#   primary:
+#     background: '0x181818'
+#     foreground: '0xd8d8d8'
+
+#   # Colors the cursor will use if `custom_cursor_colors` is true
+#   cursor:
+#     text: '0x181818'
+#     cursor: '0xd8d8d8'
+
+#   # Normal colors
+#   normal:
+#     black:   '0x181818'
+#     red:     '0xab4642'
+#     green:   '0xa1b56c'
+#     yellow:  '0xf7ca88'
+#     blue:    '0x7cafc2'
+#     magenta: '0xba8baf'
+#     cyan:    '0x86c1b9'
+#     white:   '0xd8d8d8'
+
+#   # Bright colors
+#   bright:
+#     black:   '0x585858'
+#     red:     '0xab4642'
+#     green:   '0xa1b56c'
+#     yellow:  '0xf7ca88'
+#     blue:    '0x7cafc2'
+#     magenta: '0xba8baf'
+#     cyan:    '0x86c1b9'
+#     white:   '0xf8f8f8'
 
   indexed_colors:
     - { index: 16, color: '0xdc9656' }
