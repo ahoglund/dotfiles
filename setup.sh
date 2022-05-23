@@ -32,6 +32,7 @@ fi
 
 if [ "$os" == "Linux" ]; then
   echo 'set -x LIBRARY_PATH $LIBRARY_PATH /usr/local/opt/openssl/lib/' >> $HOME/.config/fish/os.fish
+  echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> $HOME/.config/fish/os.fish
 fi
 
 # TMUX
