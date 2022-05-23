@@ -3,6 +3,10 @@
 exec 2>&1
 set -x
 
+PATH="$HOME/bin:$PATH"
+dotfiles_dir=$(pwd)
+os=$(uname -s)
+
 #####
 # Setup directories and symlinks
 #####
