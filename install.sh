@@ -10,6 +10,14 @@ os=$(uname -s)
 
 NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
+if [ "$os" == "Darwin" ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+if [ "$os" == "Linux" ]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
 brew bundle
 if [ "$1" == "reset" ]; then
   $dotfiles_dir/reset.sh

@@ -62,6 +62,7 @@ else
   GIT_CREDENTIAL='cache'
 fi
 
+# this needs tweaking based on OS.
 sed -e "s/GIT_CREDENTIAL_HELPER/$GIT_CREDENTIAL/g" -i '' $dotfiles_dir/gitconfig
 
 # MISC
