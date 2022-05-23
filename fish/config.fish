@@ -31,7 +31,6 @@ alias vim='nvim'
 alias clip="nc -U ~/.clipper.sock"
 
 # env
-set -x LIBRARY_PATH $LIBRARY_PATH /usr/local/opt/openssl/lib/
 set -x CLICOLOR 1
 set -x GOPATH $HOME/src/go
 set -x GOBIN $GOPATH/bin
@@ -40,7 +39,6 @@ set -x GO111MODULE auto
 # remember history between IEx sessions
 set -x ERL_AFLAGS "-kernel shell_history enabled"
 
-fish_add_path /Applications/Xcode.app/Contents/Applications/Application\ Loader.app/Contents/itms/bin
 fish_add_path $HOME/src/go/bin
 fish_add_path $HOME/.rbenv/bin
 fish_add_path $HOME/.cargo/bin
@@ -53,8 +51,5 @@ fish_add_path /usr/local/opt/heroku-node/bin
 fish_add_path -aP $HOME/bin
 
 source ~/.config/fish/private.fish
-status --is-interactive; and source (rbenv init -|psub)
-
-source ~/.config/fish/private.fish
-
-# eval (ssh-agent -c)
+source ~/.config/fish/os.fish
+direnv hook fish | source

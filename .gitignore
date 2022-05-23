@@ -1,3 +1,7 @@
 .DS_Store
 gitconfig
 tags
+fish/private.fish
+fish/os.fish
+fish/functions/fish_user_key_bindings.fish
+fish/functions/fzf_key_bindings.fish

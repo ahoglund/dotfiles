@@ -55,6 +55,8 @@ autocmd BufWritePre * :%s/\s\+$//e
 autocmd BufWritePre *.rb :%s/\t\+/  /e
 " convert tabs on save
 autocmd BufWritePre *.java :%s/\t\+/  /e
+" convert tabs on save
+autocmd BufWritePre *.kt :%s/\t\+/  /e
 " mkdir if file doesn't exist
 autocmd BufWritePre * call s:Mkdir()
 
@@ -163,7 +165,7 @@ nmap <Leader>8 :8b<CR>
 nmap <Leader>9 :9b<CR>
 nmap <Leader>0 :10b<CR>
 nmap <Leader>e :edit<SPACE>
-nmap <Leader>v :view<SPACE>
+nmap <Leader>vs :vsplit<CR>
 nmap <Leader>fh :%s/:\(\w\+\)\s*=>\s*/\1: /g<CR>
 nmap <space><space> <C-^><CR>
 nmap <Leader>k :bnext<CR>
