@@ -12,7 +12,7 @@ if [ "$1" == "reset" ]; then
   $dotfiles_dir/reset.sh
 fi
 
-$dotfiles_dor/setup.sh
+$dotfiles_dir/setup.sh
 
 if [ "$os" == "Darwin" ]; then
   brew bundle
