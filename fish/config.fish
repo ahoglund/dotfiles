@@ -52,4 +52,3 @@ fish_add_path -aP $HOME/bin
 
 source ~/.config/fish/private.fish
 source ~/.config/fish/os.fish
-# direnv hook fish | source
