@@ -75,7 +75,7 @@ ln -s $dotfiles_dir/nvim $HOME/.config/nvim
 ln -s $dotfiles_dir/hammerspoon $HOME/.hammerspoon
 ln -s $dotfiles_dir/clipper.json $HOME/.clipper.json
 mkdir -p $HOME/.rbenv/plugins
-echo 3.1.2 > .rbenv/version
+echo 3.1.2 > $HOME/.rbenv/version
 
 # Indexing Ruby std-lib
 gem install gem-ctags
