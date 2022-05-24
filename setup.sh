@@ -33,6 +33,11 @@ fi
 if [ "$os" == "Linux" ]; then
   echo 'set -x LIBRARY_PATH $LIBRARY_PATH /usr/local/opt/openssl/lib/' >> $HOME/.config/fish/os.fish
   echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> $HOME/.config/fish/os.fish
+
+  # need the system conf.d files in homebrew, so this is the hack to do that.
+  fish_version=$(fish -v | cut -d' ' -f3)
+  mkdir -p /home/linuxbrew/.linuxbrew/Cellar/fish/$fish_version/etc/fish/conf.d/
+  cp /etc/fish/conf.d/*fish /home/linuxbrew/.linuxbrew/Cellar/fish/$fish_version/etc/fish/conf.d/
 fi
 
 # TMUX
