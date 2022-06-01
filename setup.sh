@@ -28,11 +28,15 @@ if [ "$os" == "Darwin" ]; then
   echo 'fish_add_path /Applications/Xcode.app/Contents/Applications/Application\ Loader.app/Contents/itms/bin' >> $HOME/.config/fish/os.fish
   echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.config/fish/os.fish
   echo 'status --is-interactive; and source (rbenv init -|psub)' >> $HOME/.config/fish/os.fish
+  echo 'set -g default-command /opt/homebrew/bin/fish' >> $dotfiles_dir/tmux.conf
+  echo 'set -g default-shell /opt/homebrew/bin/fish' >> $dotfiles_dir/tmux.conf
 fi
 
 if [ "$os" == "Linux" ]; then
   echo 'set -x LIBRARY_PATH $LIBRARY_PATH /usr/local/opt/openssl/lib/' >> $HOME/.config/fish/os.fish
   echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> $HOME/.config/fish/os.fish
+  echo 'set -g default-command /home/linuxbrew/.linuxbrew/bin/fish' >> $dotfiles_dir/tmux.conf
+  echo 'set -g default-shell /home/linuxbrew/.linuxbrew/bin/fish' >> $dotfiles_dir/tmux.conf
 
   # need the system conf.d files in homebrew, so this is the hack to do that.
   fish_version=$(fish -v | cut -d' ' -f3)
