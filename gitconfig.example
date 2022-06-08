@@ -20,8 +20,7 @@
 [pull]
   rebase = false
 [commit]
-  gpgsign = true
-[user]
-  signingkey = 513674C41DD2CAB3
+  gpgsign = false
 [core]
   editor = vim
+  excludesfile = ~/.gitignore.global

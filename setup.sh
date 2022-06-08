@@ -58,6 +58,7 @@ ln -s $dotfiles_dir/alacritty/alacritty.yml $HOME/.config/alacritty/alacritty.ym
 rm -f $HOME/.gitconfig
 cp -p $dotfiles_dir/gitconfig.example $dotfiles_dir/gitconfig
 ln -s $dotfiles_dir/gitconfig $HOME/.gitconfig
+ln -s $dotfiles_dor/gitignore.global $HOME/.gitignore.global
 
 if [ "$CODESPACES" == "" ]; then
  echo '[url "git@github.com:"]' >> gitconfig
