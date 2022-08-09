@@ -13,14 +13,10 @@
   evolve = "! f() { git checkout $1 && git pull;}; f"
 [init]
   templatedir = ~/.git_template
-[gpg]
-  program = gpg2
 [fetch]
   prune = true
 [pull]
   rebase = false
-[commit]
-  gpgsign = false
 [core]
-  editor = vim
+  editor = nvim
   excludesfile = ~/.gitignore.global
