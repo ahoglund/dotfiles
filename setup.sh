@@ -90,9 +90,8 @@ mkdir -p $HOME/.rbenv/plugins
 
 # Indexing Ruby std-lib
 gem install gem-ctags
-
 git clone https://github.com/tpope/rbenv-ctags.git $HOME/.rbenv/plugins/rbenv-ctags
-rbenv ctags
+#rbenv ctags
 
 # Setup GnuPG
 mkdir -p $HOME/.gnupg
