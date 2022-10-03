@@ -44,6 +44,9 @@ if [ "$os" == "Linux" ]; then
   sudo mv $HOME/nvim.appimage $HOME/bin/nvim
 fi
 
+# Install node
+nodenv install 16.13
+
 # Use fish
 sudo chsh -s $(which fish) $(whoami)
 
