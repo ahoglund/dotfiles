@@ -24,6 +24,8 @@ ln -s $dotfiles_dir/fish/config.fish $HOME/.config/fish/config.fish
 
 cd $dotfiles_dir
 
+echo ' eval "$(nodenv init -)"' >> $HOME/.config/fish/config.fish
+
 if [ "$os" == "Darwin" ]; then
   echo 'fish_add_path /Applications/Xcode.app/Contents/Applications/Application\ Loader.app/Contents/itms/bin' >> $HOME/.config/fish/os.fish
   echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.config/fish/os.fish
