@@ -51,9 +51,9 @@ fi
 # Install node
 nodenv install 16.13
 
+# Install vim plugins
+nvim +'PlugInstall --sync' +qa
+
 # Install coc-solargraph
 gem install solargraph
 nvim +'CocInstall coc-solargraph' +qa
-
-# Install vim plugins
-nvim +'PlugInstall --sync' +qa
