@@ -1,3 +1,4 @@
+brew "neovim"
 brew "yamllint"
 brew "hub"
 brew "fzf"

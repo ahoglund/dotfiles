@@ -22,8 +22,6 @@ fi
 brew "fish"
 sudo chsh -s $(which fish) $(whoami)
 
-brew "neovim"
-
 brew bundle
 if [ "$1" == "reset" ]; then
   $dotfiles_dir/reset.sh
