@@ -1,6 +1,5 @@
 
 # cmd
-alias git=hub
 alias cp='cp -iv'
 alias mv='mv -iv'
 alias mkdir='mkdir -pv'
