@@ -18,6 +18,12 @@ if [ "$os" == "Linux" ]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
+# Use fish
+brew "fish"
+sudo chsh -s $(which fish) $(whoami)
+
+brew "neovim"
+
 brew bundle
 if [ "$1" == "reset" ]; then
   $dotfiles_dir/reset.sh
@@ -47,8 +53,9 @@ fi
 # Install node
 nodenv install 16.13
 
-# Use fish
-sudo chsh -s $(which fish) $(whoami)
+# Install coc-solargraph
+gem install solargraph
+nvim +'CocInstall coc-solargraph' +qa
 
 # Install vim plugins
 nvim +'PlugInstall --sync' +qa

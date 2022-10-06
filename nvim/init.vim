@@ -39,7 +39,7 @@ Plug 'digitaltoad/vim-pug'
 Plug 'vimwiki/vimwiki'
 Plug 'fatih/vim-go'
 " LSP
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot'
 
 " I actually have nvim 0.4.3 installed, but since native
@@ -105,11 +105,6 @@ set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 let mapleader=","
 map <space> <Leader>
 
-
-" Touchbar!
-inoremap jj <esc>
-inoremap jk <esc>
-
 " vim-test
 nmap <Leader>t :TestNearest<CR>
 nmap <Leader>T :TestFile<CR>
@@ -129,6 +124,10 @@ if has("nvim")
   let g:neoterm_default_mod = 'vertical'
   let g:test#preserve_screen = 1
 endif
+
+inoremap <silent><expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : "\<Tab>"
+inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
 
 nnoremap <C-p> :Files<CR>
 nmap <silent> <Leader>r :Files<CR>
