@@ -19,7 +19,7 @@ if [ "$os" == "Linux" ]; then
 fi
 
 # Use fish
-brew "fish"
+brew install fish
 sudo chsh -s $(which fish) $(whoami)
 
 brew bundle
