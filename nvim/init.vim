@@ -31,8 +31,7 @@ Plug 'neomake/neomake'
 " Finding stuff, faster
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-" Theme
-" Plug 'jpo/vim-railscasts-theme'
+Plug 'EdenEast/nightfox.nvim'
 Plug 'kassio/neoterm'
 Plug 'leafgarland/typescript-vim'
 Plug 'digitaltoad/vim-pug'
@@ -95,6 +94,8 @@ set expandtab
 " Make it obvious where 148 characters is
 set textwidth=148
 set colorcolumn=+2
+set termguicolors
+colorscheme nordfox
 
 set list listchars=tab:»·,trail:·,nbsp:·
 
