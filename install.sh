@@ -49,7 +49,7 @@ if [ "$os" == "Linux" ]; then
 fi
 
 # Install node
-nodenv install 16.13
+nodenv install 16.13.2
 
 # Install vim plugins
 nvim +'PlugInstall --sync' +qa
