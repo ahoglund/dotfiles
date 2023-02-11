@@ -2,8 +2,10 @@ local map = require("utils").map
 
 map('n', '<leader>sb', ':w!<CR>')
 map('n', '<leader>w', ':w!<CR>')
-map('n', '<leader>cb', 'ZZ<CR>')
-map('n', '<leader>e', ":e <C-R>=expand('%:p:h') . '/'<cr>")
+map('n', '<leader>c', 'ZZ<CR>')
+-- map('n', '<leader>cb', 'ZZ<CR>')
+-- map('n', '<leader>e', ":e <C-R>=expand('%:p:h') . '/'<cr>")
+map('n', '<leader>e', ':edit<SPACE>')
 map('n', '<leader>vr', "<cmd>lua ReloadConfig()<CR>")
 map('n', '<leader>t', ':TestNearest<CR>')
 map('n', '<leader>T', ':TestFile<CR>')
@@ -11,6 +13,7 @@ map('n', '<leader>a', ':TestSuite<CR>')
 map('n', '<leader>l', ':TestLast<CR>')
 map('n', '<leader>g', ':TestVisit<CR>')
 map('n', '<leader>f', '/<C-R><C-W><CR>')
+map('n', '<leader>vs', ':vsplit<CR>')
 
 -- function s:Mkdir()
 --   let dir = expand('%:p:h')
@@ -41,11 +44,6 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 
 -- vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 --
--- vim.keymap.set('n', '<leader>t', ':TestNearest<CR>')
--- vim.keymap.set('n', '<leader>T', ':TestFile<CR>')
--- vim.keymap.set('n', '<leader>a', ':TestSuite<CR>')
--- vim.keymap.set('n', '<leader>l', ':TestLast<CR>')
--- vim.keymap.set('n', '<leader>g', ':TestVisit<CR>')
 -- nnoremap <leader>y :call system('socat - UNIX-CLIENT:$HOME/.clipper.sock', @0)<CR>
 
 -- vim.keymap.set('n', '<leader>f', '/<C-R><C-W><CR>')
@@ -57,9 +55,6 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 -- inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
 --
 -- nnoremap <C-p> :Files<CR>
--- nmap <silent> <Leader>r :Files<CR>
--- nmap \ :Rg<SPACE>
--- nmap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 -- nmap <Leader>ae :Tabularize /=<CR>
 -- vmap <Leader>ae :Tabularize /=<CR>
 -- nmap <Leader>ah :Tabularize /:\zs<CR>
@@ -68,12 +63,9 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 -- vmap <Leader>ahr :Tabularize /=><CR>
 --
 
--- vim.keymap.set('n', '<leader>c', 'ZZ')
--- vim.keymap.set('n', '<leader>e', ':edit<SPACE>')
 
 --
 -- " buffer nav
--- nmap <Leader>b :Buffers<CR>
 -- nmap <Leader>1 :1b<CR>
 -- nmap <Leader>2 :2b<CR>
 -- nmap <Leader>3 :3b<CR>
@@ -84,7 +76,6 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 -- nmap <Leader>8 :8b<CR>
 -- nmap <Leader>9 :9b<CR>
 -- nmap <Leader>0 :10b<CR>
--- nmap <Leader>vs :vsplit<CR>
 -- nmap <Leader>fh :%s/:\(\w\+\)\s*=>\s*/\1: /g<CR>
 -- nmap <Leader>k :bnext<CR>
 -- nmap <Leader>j :bprevious<CR>
