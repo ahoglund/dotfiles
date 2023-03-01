@@ -1,6 +1,9 @@
 selection:
   save_to_clipboard: true
 font:
+  normal:
+    family: Input Mono
+    style: Extra Light
   size: 20.0
   offset:
     x: 1

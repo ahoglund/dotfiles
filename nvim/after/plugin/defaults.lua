@@ -1,4 +1,6 @@
 local map = require("utils").map
+local imap = require("utils").imap
+local vmap = require("utils").vmap
 
 map('n', '<leader>sb', ':w!<CR>')
 map('n', '<leader>w', ':w!<CR>')
@@ -14,22 +16,28 @@ map('n', '<leader>l', ':TestLast<CR>')
 map('n', '<leader>g', ':TestVisit<CR>')
 map('n', '<leader>f', '/<C-R><C-W><CR>')
 map('n', '<leader>vs', ':vsplit<CR>')
+-- " Git grep visually selected text
+vmap('<C-g>', '')
 
--- function s:Mkdir()
---   let dir = expand('%:p:h')
---
---   if !isdirectory(dir)
---     call mkdir(dir, 'p')
---     echo 'Created non-existing directory: '.dir
---
--- endfunction
--- Create directory
+-- vim.g.copilot_no_tab_map = 1
+-- imap('<silent><script><expr> <C-J>', 'copilot#Accept("<C-R>=expand("%:p:h") . "/"<CR>")')
 
+vim.cmd('noremap <C-b> :noh<cr>:call clearmatches()<cr>') -- clear matches Ctrl+b
+
+-- function Mkdir()
+--   local dir = vim.expand('%:p:h')
+--
+--   if vim.fn.isdirectory(dir) == 0 then
+--     vim.fn.mkdir(dir, 'p')
+--     print('Created directory: ' .. dir)
+--   end
+-- end
+--
 -- vim.api.nvim_create_autocmd('BufWritePre', {
---   command = 'call s:Mkdir()',
---   pattern = "*",
+--   command = 'lua Mkdir()',
+--   pattern = '*',
 -- })
-
+--
 -- " strip whitespace on save
 vim.api.nvim_create_autocmd('BufWritePre', {
   command = [[%s/\s\+$//e]],
@@ -46,7 +54,6 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 --
 -- nnoremap <leader>y :call system('socat - UNIX-CLIENT:$HOME/.clipper.sock', @0)<CR>
 
--- vim.keymap.set('n', '<leader>f', '/<C-R><C-W><CR>')
 -- nnoremap <Leader>fr :%s/\<<C-r><C-w>\>/
 -- vnoremap <Leader>fr "hy:%s/<C-r>h/
 --
@@ -54,7 +61,6 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 -- inoremap <expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : "\<Tab>"
 -- inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
 --
--- nnoremap <C-p> :Files<CR>
 -- nmap <Leader>ae :Tabularize /=<CR>
 -- vmap <Leader>ae :Tabularize /=<CR>
 -- nmap <Leader>ah :Tabularize /:\zs<CR>
@@ -89,8 +95,6 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 -- "copy visual selection to clipboard
 -- vnoremap <C-c> "*y<CR>
 --
--- " Git grep visually selected text
--- vnoremap <Leader>ag y:Ag '<c-r>"' *<cr>
 --
 --
 -- " quickly edit and source vimrc
