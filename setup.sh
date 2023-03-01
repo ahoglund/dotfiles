@@ -20,6 +20,7 @@ touch $HOME/.config/fish/private.fish
 # A place for os specific things, ignored by the dotfiles repo
 touch $HOME/.config/fish/os.fish
 ln -s $dotfiles_dir/fish/functions $HOME/.config/fish/functions
+rm -f $HOME/.config/fish/config.fish
 ln -s $dotfiles_dir/fish/config.fish $HOME/.config/fish/config.fish
 
 cd $dotfiles_dir
