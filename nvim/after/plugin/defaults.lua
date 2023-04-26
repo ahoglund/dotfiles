@@ -50,6 +50,8 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = { '*.rb', '*.java', '*.kt' },
 })
 
+-- au BufRead,BufNewFile *.md setlocal textwidth=120
+
 -- vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 --
 -- nnoremap <leader>y :call system('socat - UNIX-CLIENT:$HOME/.clipper.sock', @0)<CR>
