@@ -49,7 +49,12 @@ if [ "$os" == "Linux" ]; then
 fi
 
 # Install node
-nodenv install 16.13.2
+if [ "$CODESPACES" == "true" ]; then
+  nodenv_version=`cat /workspaces/github/.node-version`
+  nodenv install nodenv_version
+else
+  nodenv install 16.13.2
+fi
 
 # Install vim plugins
 # nvim +'PackerInstall --sync' +qa
