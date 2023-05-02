@@ -359,7 +359,6 @@ end
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
   gopls = {},
-  ruby_ls = {},
   sorbet = {},
   lua_ls = {
     Lua = {
