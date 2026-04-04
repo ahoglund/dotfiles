@@ -1,24 +1,20 @@
+# Brewfile — macOS only
+# For Linux (Arch/Omarchy), see packages.arch
+
 brew "openssl"
+brew "stow"
+brew "starship"
+brew "mise"        # replaces nodenv + rbenv — manages Node, Ruby, and more
 brew "neovim"
 brew "gcc"
-brew "gcc@11"
-brew "libfuse"
-brew "libfuse@2"
 brew "ripgrep"
 brew "ctags"
-brew "nodenv"
-brew "the_silver_searcher"
 brew "fzf"
 brew "jq"
 brew "tmux"
 brew "gnupg" unless File.executable? "/usr/local/bin/gpg"
-brew "rbenv"
-# brew "go"
-#brew "rust"
-#brew "yamllint"
-#brew "elixir"
-#brew "erlang"
-#brew "k9s"
 brew "gh"
 brew "yarn"
-brew "clipper"
+# brew "go"
+# brew "rust"
+# brew "gnu-sed"   # uncomment if you need GNU sed on macOS

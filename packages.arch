@@ -1,0 +1,20 @@
+# packages.arch — Arch Linux packages installed via pacman
+# Used by install.sh on Linux. Install with:
+#   sudo pacman -S --needed --noconfirm $(grep -v '^#\|^$' packages.arch)
+#
+# mise (Node, Ruby, etc.) is installed separately via curl https://mise.run | sh
+# as it's not in the official repos.
+
+stow
+zsh
+tmux
+neovim
+ripgrep
+fzf
+jq
+ctags
+gnupg
+github-cli
+yarn
+starship
+base-devel
