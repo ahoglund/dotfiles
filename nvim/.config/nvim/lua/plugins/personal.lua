@@ -8,15 +8,27 @@ return {
 
   -- Testing (vim-test/vim-test is the current maintained fork of janko-m/vim-test)
   -- Keymaps are in keymaps.lua under <leader>t prefix
+  -- Runs tests in a zellij floating pane; falls back to a nvim terminal split
+  -- when nvim is opened outside of a zellij session.
   {
     "vim-test/vim-test",
-    dependencies = { "preservim/vimux" }, -- run tests in a tmux pane
-  },
-
-  -- Seamless Ctrl+hjkl navigation between nvim splits and tmux panes
-  {
-    "aserowy/tmux.nvim",
-    config = true,
+    init = function()
+      vim.g["test#custom_strategies"] = {
+        zellij = function(cmd)
+          if os.getenv("ZELLIJ") then
+            vim.fn.system(string.format(
+              "zellij run --floating --name 'Tests' -- bash -c %s",
+              vim.fn.shellescape(cmd)
+            ))
+          else
+            -- Fallback: terminal split inside nvim
+            vim.cmd("split | terminal " .. cmd)
+            vim.cmd("normal! G") -- scroll to bottom
+          end
+        end,
+      }
+      vim.g["test#strategy"] = "zellij"
+    end,
   },
 
   -- Ruby / Rails

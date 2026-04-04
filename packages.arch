@@ -7,7 +7,7 @@
 
 stow
 zsh
-tmux
+zellij
 neovim
 ripgrep
 fzf

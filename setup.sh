@@ -19,7 +19,7 @@ stow_pkg() {
 echo "==> Linking dotfiles..."
 
 stow_pkg zsh
-stow_pkg tmux
+stow_pkg zellij
 stow_pkg alacritty
 stow_pkg ruby
 stow_pkg nvim
