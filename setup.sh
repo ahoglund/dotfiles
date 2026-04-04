@@ -22,9 +22,16 @@ stow_pkg zsh
 stow_pkg zellij
 stow_pkg alacritty
 stow_pkg ruby
+# Remove plain-file stubs that Omarchy creates, which stow refuses to overwrite.
+# These get replaced by symlinks into this repo.
+rm -f \
+  "$HOME/.config/nvim/lua/config/options.lua" \
+  "$HOME/.config/nvim/lua/config/keymaps.lua" \
+  "$HOME/.config/nvim/lua/config/autocmds.lua"
 stow_pkg nvim
 stow_pkg bin
 stow_pkg gpg
+rm -f "$HOME/.config/starship.toml"
 stow_pkg misc
 
 # macOS-only packages
