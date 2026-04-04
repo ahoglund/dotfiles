@@ -1,7 +1,13 @@
 .DS_Store
 gitconfig
 tags
+
+# Fish (deprecated — using zsh now, leaving for reference)
 fish/private.fish
 fish/os.fish
 fish/functions/fish_user_key_bindings.fish
 fish/functions/fzf_key_bindings.fish
+
+# Zsh private/OS-specific files (created by setup.sh, never committed)
+.zsh_private
+.zsh_os

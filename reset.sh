@@ -15,7 +15,7 @@ rm -rf $HOME/.config
 rm -rf $HOME/.git_template
 rm -rf $HOME/.clipper.json
 
-rm -f $HOME/.tmux.conf
+rm -rf $HOME/.config/zellij
 rm -f $HOME/.bash_profile
 rm -f $HOME/.gitconfig
 rm -f $HOME/.gemrc

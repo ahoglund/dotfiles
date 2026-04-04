@@ -1,0 +1,17 @@
+// Zellij configuration
+// Full reference: https://zellij.dev/documentation/configuration
+
+default_shell "zsh"
+
+// Copy to clipboard on selection (uses OSC 52 — works in Ghostty and Alacritty)
+copy_on_select true
+
+// Large scroll buffer
+scroll_buffer_size 50000
+
+// Theme — "default" inherits terminal colors; Omarchy handles theming at the
+// terminal level so this stays neutral across theme switches
+theme "default"
+
+// Compact layout keeps more vertical space for content
+// default_layout "compact"

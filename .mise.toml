@@ -1,0 +1,9 @@
+# mise — global language version defaults
+# https://mise.jdx.dev
+#
+# These are fallback versions used when no project-level .mise.toml exists.
+# Override per-project by adding a .mise.toml or .tool-versions in that repo.
+
+[tools]
+node = "lts"
+ruby = "3"
